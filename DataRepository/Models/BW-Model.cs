@@ -8,7 +8,7 @@ namespace DataRepository.Models
     public partial class BW_Model : DbContext
     {
         public BW_Model()
-            : base("name=BW_Model")
+            : base("name=boxerdb")
         {
         }
 

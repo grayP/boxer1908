@@ -75,6 +75,8 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CrewMember.cs" />
     <Compile Include="Models\Regatta.cs" />
+    <Compile Include="Models\Regatta\RegattaManager.cs" />
+    <Compile Include="Models\Regatta\RegattaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tblRegatta.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -110,6 +112,12 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseModel\BaseModel.csproj">
+      <Project>{ecb4883b-114a-4f92-88a7-bcaa10a4369b}</Project>
+      <Name>BaseModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
