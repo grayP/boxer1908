@@ -13,6 +13,7 @@ namespace DataRepository.Models
         {
 
             Init();
+            ValidationErrors = new List<KeyValuePair<string, string>>();
 
             regattas = new List<tblRegatta>();
             SearchEntity = new tblRegatta();
@@ -23,6 +24,8 @@ namespace DataRepository.Models
 
         //Properties--------------
         public string EventCommand { get; set; }
+        public string EventArgument { get; set; }
+
         public List<tblRegatta> regattas { get; set; }
         public tblRegatta SearchEntity { get; set; }
         public tblRegatta Entity { get; set; }
@@ -34,14 +37,14 @@ namespace DataRepository.Models
 
 
 
-        public string EventArgument { get; set; }
         public string Mode { get; set; }
         //---------------------------------------------------------------
         private void Init()
         {
             ListMode();
             EventCommand = "list";
-            
+            EventArgument = String.Empty;
+
 
         }
 
@@ -74,6 +77,11 @@ namespace DataRepository.Models
                         Get();
                     }
                     break;
+                case "edit":
+                    IsValid = true;
+                    Edit();
+                    break;
+
                 case "delete":
                     break;
                 default:
@@ -89,11 +97,10 @@ namespace DataRepository.Models
         private void ListMode()
         {
             IsValid = true;
- 
+
             IsListAreaVisible = true;
             IsSearchVisible = true;
             IsDetailVisible = false;
-
             Mode = "list";
 
         }
@@ -104,9 +111,16 @@ namespace DataRepository.Models
             IsListAreaVisible = false;
             IsSearchVisible = false;
             IsDetailVisible = true;
-
             Mode = "Add";
 
+        }
+
+        private void EditMode()
+        {
+            IsListAreaVisible = false;
+            IsSearchVisible = false;
+            IsDetailVisible = true;
+            Mode = "Edit";
         }
 
 
@@ -116,8 +130,16 @@ namespace DataRepository.Models
             regattas = rgm.Get(SearchEntity);
         }
 
+        private void Edit()
+        {
+            RegattaManager rgm = new RegattaManager();
+
+            Entity=rgm.Find(Convert.ToInt32(EventArgument));
+            EditMode();
+        }
+
         private void Add()
-            {
+        {
             IsValid = true;
             Entity = new tblRegatta();
             Entity.RegattaName = "";
@@ -126,33 +148,41 @@ namespace DataRepository.Models
 
             AddMode();
 
-            }
+        }
 
 
         private void Save()
         {
 
             RegattaManager rgm = new RegattaManager();
-            if (Mode=="Add")
-                {
-                    rgm.Insert(Entity);
-                }
+            if (Mode == "Add")
+            {
+                rgm.Insert(Entity);
+            }
+            else
+            {
+                rgm.Update(Entity);
+            }
 
             ValidationErrors = rgm.ValidationErrors;
-            if (ValidationErrors.Count>0)
+            if (ValidationErrors.Count > 0)
             {
                 IsValid = false;
             }
 
             if (!IsValid)
             {
-                if (Mode=="Add")
+                if (Mode == "Add")
                 {
                     AddMode();
+                }
+                else
+                {
+                    EditMode();
                 }
             }
         }
 
-         
+
     }
 }

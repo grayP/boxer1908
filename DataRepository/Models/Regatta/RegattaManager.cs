@@ -42,10 +42,9 @@ namespace DataRepository.Models
 
         public tblRegatta Find(int RegattaID)
         {
-            tblRegatta ret = new tblRegatta();
+            tblRegatta ret = null;
             using (boxerdb db = new boxerdb())
             {
-
                 ret = db.tblRegattas.Find(RegattaID);
             }
             return ret;
@@ -108,7 +107,15 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        db.tblRegattas.Add(entity);
+                        tblRegatta NewRegatta = new tblRegatta()
+                        {
+                            RegattaName = entity.RegattaName,
+                            RegattaYear = entity.RegattaYear,
+                            Result = entity.Result,
+                            StartDate = entity.StartDate
+                        };
+
+                        db.tblRegattas.Add(NewRegatta);
                         db.SaveChanges();
                         ret = true;
                     }

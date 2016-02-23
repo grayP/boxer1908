@@ -9,6 +9,7 @@
 {
     <!-- Start Hidden form -->
     @Html.HiddenFor(m => m.EventCommand)
+    @Html.HiddenFor(m => m.EventArgument)
     @Html.HiddenFor(m => m.Mode)
     <!-- End Hidden form-->
 
@@ -52,25 +53,25 @@
             <table class="table table-condensed table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Edit</th>
+                        <th class="pdsa-action-button-column">Edit</th>
                         <th>Regatta</th>
                         <th>Year</th>
                         <th>Date</th>
                         <th>Result</th>
-                        <th>Delete</th>
+                        <th class="pdsa-action-button-column">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.regattas)
                     {
                         <tr>
-                            <td></td>
+                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
                             <td>@item.RegattaName</td>
                             <td>@item.RegattaYear</td>
                             <td>@item.StartDate.Value.ToString("dd MMM yyyy")</td>
                             <td>@item.Result</td>
-                            <td></td>
-                        </tr>
+                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="delete" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a></td>
+                  </tr>
                     }
                 </tbody>
             </table>
@@ -105,8 +106,9 @@
                             }
                      </div>
                 </div>
-                <!-- End EMssage Area-->
+                <!-- End message Area-->
                 <div class="form-group">
+                    @Html.HiddenFor(m=>m.Entity.Id)
                     @Html.LabelFor(m => m.Entity.RegattaName, "Regatta")
                     @Html.TextBoxFor(m => m.Entity.RegattaName, new { @class = "form-control" })
                 </div>
@@ -155,6 +157,7 @@
             $("[data-pdsa-action]").on("click", function (e) {
                 e.preventDefault();
                 $("#EventCommand").val($(this).data("pdsa-action"));
+                $("#EventArgument").val($(this).data("pdsa-val"));
                 $("form").submit();
 
 
