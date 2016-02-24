@@ -74,6 +74,8 @@
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CrewMember.cs" />
+    <Compile Include="Models\MetaData.cs" />
+    <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\Regatta.cs" />
     <Compile Include="Models\Regatta\RegattaManager.cs" />
     <Compile Include="Models\Regatta\RegattaViewModel.cs" />

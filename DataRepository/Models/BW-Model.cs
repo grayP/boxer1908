@@ -19,16 +19,16 @@ namespace DataRepository.Models
 
         }
 
-        public class MyDBContextInitialiser: DropCreateDatabaseIfModelChanges<BW_Model>
+        public class MyDBContextInitialiser : DropCreateDatabaseIfModelChanges<BW_Model>
         {
             protected override void Seed(BW_Model context)
             {
                 base.Seed(context);
             }
-            
-            }
+
         }
-        
-       
     }
+
+
+}
 

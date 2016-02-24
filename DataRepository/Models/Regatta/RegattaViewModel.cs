@@ -6,154 +6,63 @@ using System.Threading.Tasks;
 
 namespace DataRepository.Models
 {
-    public class RegattaViewModel
+    public class RegattaViewModel: BaseModel.ViewModelBase
     {
 
-        public RegattaViewModel()
+        public RegattaViewModel(): base()
         {
-
-            Init();
-            ValidationErrors = new List<KeyValuePair<string, string>>();
-
-            regattas = new List<tblRegatta>();
-            SearchEntity = new tblRegatta();
-            Entity = new tblRegatta();
+            
         }
-
-
-
+        
         //Properties--------------
-        public string EventCommand { get; set; }
-        public string EventArgument { get; set; }
-
         public List<tblRegatta> regattas { get; set; }
         public tblRegatta SearchEntity { get; set; }
         public tblRegatta Entity { get; set; }
-        public bool IsDetailVisible { get; set; }
-        public bool IsSearchVisible { get; set; }
-        public bool IsListAreaVisible { get; set; }
-        public bool IsValid { get; set; }
-        public List<KeyValuePair<string, string>> ValidationErrors { get; set; }
-
-
-
-        public string Mode { get; set; }
+    
         //---------------------------------------------------------------
-        private void Init()
+        protected override void Init()
         {
-            ListMode();
-            EventCommand = "list";
-            EventArgument = String.Empty;
-
-
+          regattas = new List<tblRegatta>();
+          SearchEntity = new tblRegatta();
+          Entity = new tblRegatta();
+          base.Init();
         }
 
-
-        public void HandleRequest()
+        public override void HandleRequest()
         {
-            switch (EventCommand.ToLower())
-            {
-                case "list":
-                case "search":
-                    ListMode();
-                    Get();
-                    break;
-                case "resetsearch":
-                    ResetSearch();
-                    Get();
-                    break;
-                case "add":
-                    Add();
-                    Get();
-                    break;
-                case "cancel":
-                    ListMode();
-                    Get();
-                    break;
-                case "save":
-                    Save();
-                    if (IsValid)
-                    {
-                        Get();
-                    }
-                    break;
-                case "edit":
-                    IsValid = true;
-                    Edit();
-                    break;
-
-                case "delete":
-                    break;
-                default:
-                    break;
-            }
+            base.HandleRequest();
         }
 
-        private void ResetSearch()
+        protected override void ResetSearch()
         {
             SearchEntity = new tblRegatta();
         }
 
-        private void ListMode()
-        {
-            IsValid = true;
-
-            IsListAreaVisible = true;
-            IsSearchVisible = true;
-            IsDetailVisible = false;
-            Mode = "list";
-
-        }
-
-
-        private void AddMode()
-        {
-            IsListAreaVisible = false;
-            IsSearchVisible = false;
-            IsDetailVisible = true;
-            Mode = "Add";
-
-        }
-
-        private void EditMode()
-        {
-            IsListAreaVisible = false;
-            IsSearchVisible = false;
-            IsDetailVisible = true;
-            Mode = "Edit";
-        }
-
-
-        private void Get()
+        protected override void Get()
         {
             RegattaManager rgm = new RegattaManager();
             regattas = rgm.Get(SearchEntity);
         }
 
-        private void Edit()
+       protected override void Edit()
         {
             RegattaManager rgm = new RegattaManager();
-
             Entity=rgm.Find(Convert.ToInt32(EventArgument));
-            EditMode();
+            base.Edit();
         }
 
-        private void Add()
+        protected override void Add()
         {
             IsValid = true;
             Entity = new tblRegatta();
             Entity.RegattaName = "";
             Entity.StartDate = DateTime.Now;
-
-
-            AddMode();
-
+            base.Add();
         }
 
 
-        private void Save()
+        protected override void Save()
         {
-
             RegattaManager rgm = new RegattaManager();
             if (Mode == "Add")
             {
@@ -163,24 +72,9 @@ namespace DataRepository.Models
             {
                 rgm.Update(Entity);
             }
-
             ValidationErrors = rgm.ValidationErrors;
-            if (ValidationErrors.Count > 0)
-            {
-                IsValid = false;
-            }
 
-            if (!IsValid)
-            {
-                if (Mode == "Add")
-                {
-                    AddMode();
-                }
-                else
-                {
-                    EditMode();
-                }
-            }
+            base.Save();
         }
 
 

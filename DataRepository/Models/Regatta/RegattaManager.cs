@@ -28,7 +28,7 @@ namespace DataRepository.Models
             List<tblRegatta> ret = new List<tblRegatta>();
             using (boxerdb db = new boxerdb())
             {
-                ret = db.tblRegattas.ToList<tblRegatta>();
+                ret = db.tblRegattas.OrderBy(x=>x.StartDate).ToList<tblRegatta>();
             }
 
             if (!string.IsNullOrEmpty(Entity.RegattaName))
