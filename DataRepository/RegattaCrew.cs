@@ -12,12 +12,10 @@ namespace DataRepository
     using System;
     using System.Collections.Generic;
     
-    public partial class tblRegatta
+    public partial class RegattaCrew
     {
         public int Id { get; set; }
-        public string RegattaName { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<int> RegattaYear { get; set; }
-        public string Result { get; set; }
+        public Nullable<int> RegattaId { get; set; }
+        public Nullable<int> CrewMemberId { get; set; }
     }
 }

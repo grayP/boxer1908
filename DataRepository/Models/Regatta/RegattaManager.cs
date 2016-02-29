@@ -23,12 +23,12 @@ namespace DataRepository.Models
 
 
 
-        public List<tblRegatta> Get(tblRegatta Entity)
+        public List<Regatta> Get(Regatta Entity)
         {
-            List<tblRegatta> ret = new List<tblRegatta>();
+            List<Regatta> ret = new List<Regatta>();
             using (boxerdb db = new boxerdb())
             {
-                ret = db.tblRegattas.OrderBy(x=>x.StartDate).ToList<tblRegatta>();
+                ret = db.Regattas.OrderBy(x=>x.StartDate).ToList<Regatta>();
             }
 
             if (!string.IsNullOrEmpty(Entity.RegattaName))
@@ -40,18 +40,18 @@ namespace DataRepository.Models
             return ret;
         }
 
-        public tblRegatta Find(int RegattaID)
+        public Regatta Find(int RegattaID)
         {
-            tblRegatta ret = null;
+            Regatta ret = null;
             using (boxerdb db = new boxerdb())
             {
-                ret = db.tblRegattas.Find(RegattaID);
+                ret = db.Regattas.Find(RegattaID);
             }
             return ret;
 
         }
 
-        public bool Validate(tblRegatta entity)
+        public bool Validate(Regatta entity)
         {
             ValidationErrors.Clear();
 
@@ -68,7 +68,7 @@ namespace DataRepository.Models
         }
 
 
-        public Boolean Update(tblRegatta entity)
+        public Boolean Update(Regatta entity)
         {
             bool ret = false;
             if (Validate(entity))
@@ -77,7 +77,7 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        db.tblRegattas.Attach(entity);
+                        db.Regattas.Attach(entity);
                         var modifiedRegatta = db.Entry(entity);
                         modifiedRegatta.Property(e => e.RegattaName).IsModified = true;
                         modifiedRegatta.Property(e => e.RegattaYear).IsModified = true;
@@ -97,7 +97,7 @@ namespace DataRepository.Models
             return ret;
         }
 
-        public Boolean Insert(tblRegatta entity)
+        public Boolean Insert(Regatta entity)
         {
             bool ret = false;
             try
@@ -107,7 +107,7 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        tblRegatta NewRegatta = new tblRegatta()
+                        Regatta NewRegatta = new Regatta()
                         {
                             RegattaName = entity.RegattaName,
                             RegattaYear = entity.RegattaYear,
@@ -115,7 +115,7 @@ namespace DataRepository.Models
                             StartDate = entity.StartDate
                         };
 
-                        db.tblRegattas.Add(NewRegatta);
+                        db.Regattas.Add(NewRegatta);
                         db.SaveChanges();
                         ret = true;
                     }

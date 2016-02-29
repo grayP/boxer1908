@@ -3,7 +3,7 @@
 namespace DataRepository
 {
     [MetadataType(typeof(tblRegattaMetaData))]
-    public partial class tblRegatta
+    public partial class Regatta
     {
     }
 }

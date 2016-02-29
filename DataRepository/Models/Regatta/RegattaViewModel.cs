@@ -15,16 +15,16 @@ namespace DataRepository.Models
         }
         
         //Properties--------------
-        public List<tblRegatta> regattas { get; set; }
-        public tblRegatta SearchEntity { get; set; }
-        public tblRegatta Entity { get; set; }
+        public List<Regatta> regattas { get; set; }
+        public Regatta SearchEntity { get; set; }
+        public Regatta Entity { get; set; }
     
         //---------------------------------------------------------------
         protected override void Init()
         {
-          regattas = new List<tblRegatta>();
-          SearchEntity = new tblRegatta();
-          Entity = new tblRegatta();
+          regattas = new List<Regatta>();
+          SearchEntity = new Regatta();
+          Entity = new Regatta();
           base.Init();
         }
 
@@ -35,7 +35,7 @@ namespace DataRepository.Models
 
         protected override void ResetSearch()
         {
-            SearchEntity = new tblRegatta();
+            SearchEntity = new Regatta();
         }
 
         protected override void Get()
@@ -54,7 +54,7 @@ namespace DataRepository.Models
         protected override void Add()
         {
             IsValid = true;
-            Entity = new tblRegatta();
+            Entity = new Regatta();
             Entity.RegattaName = "";
             Entity.StartDate = DateTime.Now;
             base.Add();

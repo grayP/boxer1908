@@ -5,50 +5,107 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="boxerdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="tblRegatta">
+        <EntityType Name="CrewMember">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RegattaName" Type="varchar" MaxLength="255" />
+          <Property Name="CrewName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CrewEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="CrewPhone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Regatta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegattaName" Type="nvarchar" MaxLength="255" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="RegattaYear" Type="int" />
-          <Property Name="Result" Type="varchar" MaxLength="50" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RegattaCrew">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegattaId" Type="int" />
+          <Property Name="CrewMemberId" Type="int" />
         </EntityType>
         <EntityContainer Name="boxerdbModelStoreContainer">
-          <EntitySet Name="tblRegatta" EntityType="Self.tblRegatta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CrewMember" EntityType="Self.CrewMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regatta" EntityType="Self.Regatta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegattaCrew" EntityType="Self.RegattaCrew" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="boxerdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tblRegatta">
+        <EntityContainer Name="boxerdb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CrewMembers" EntityType="boxerdbModel.CrewMember" />
+          <EntitySet Name="Regattas" EntityType="boxerdbModel.Regatta" />
+          <EntitySet Name="RegattaCrews" EntityType="boxerdbModel.RegattaCrew" />
+        </EntityContainer>
+        <EntityType Name="CrewMember">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="RegattaName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CrewName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CrewEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CrewPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Regatta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegattaName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="RegattaYear" Type="Int32" />
-          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="boxerdb" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblRegattas" EntityType="Self.tblRegatta" />
-        </EntityContainer>
+        <EntityType Name="RegattaCrew">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegattaId" Type="Int32" />
+          <Property Name="CrewMemberId" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="boxerdbModelStoreContainer" CdmEntityContainer="boxerdb">
-          <EntitySetMapping Name="tblRegattas">
-            <EntityTypeMapping TypeName="boxerdbModel.tblRegatta">
-              <MappingFragment StoreEntitySet="tblRegatta">
+        <EntitySetMapping Name="CrewMembers">
+            <EntityTypeMapping TypeName="boxerdbModel.CrewMember">
+              <MappingFragment StoreEntitySet="CrewMember">
+                <ScalarProperty Name="CrewPhone" ColumnName="CrewPhone" />
+                <ScalarProperty Name="CrewEmail" ColumnName="CrewEmail" />
+                <ScalarProperty Name="CrewName" ColumnName="CrewName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RegattaName" ColumnName="RegattaName" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="RegattaYear" ColumnName="RegattaYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regattas">
+            <EntityTypeMapping TypeName="boxerdbModel.Regatta">
+              <MappingFragment StoreEntitySet="Regatta">
                 <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="RegattaYear" ColumnName="RegattaYear" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="RegattaName" ColumnName="RegattaName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegattaCrews">
+            <EntityTypeMapping TypeName="boxerdbModel.RegattaCrew">
+              <MappingFragment StoreEntitySet="RegattaCrew">
+                <ScalarProperty Name="CrewMemberId" ColumnName="CrewMemberId" />
+                <ScalarProperty Name="RegattaId" ColumnName="RegattaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
