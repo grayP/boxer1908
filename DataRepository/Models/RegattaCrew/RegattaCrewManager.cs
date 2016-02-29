@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataRepository.Models
 {
-    public class RegattaManager
+    public class RegattaCrewManager
     {
 
-        public RegattaManager()
+        public RegattaCrewManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
-
-            //  List<tblRegatta> _regattas = new List<tblRegatta>();
 
         }
         //Properties
@@ -21,24 +19,32 @@ namespace DataRepository.Models
 
 
 
-
-
-        public List<Regatta> Get(Regatta Entity)
+        public List<int?> Get(Regatta Entity)
         {
-            List<Regatta> ret = new List<Regatta>();
+            int RegattaID = Entity.Id;
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Regattas.OrderBy(x=>x.StartDate).ToList<Regatta>();
+                var query = (from c in db.RegattaCrews
+                             where c.RegattaId == RegattaID
+                             select c.CrewMemberId );
+                return query.ToList();
             }
-
-            if (!string.IsNullOrEmpty(Entity.RegattaName))
-            {
-                ret = ret.FindAll(p => p.RegattaName.ToLower().StartsWith(Entity.RegattaName));
-            }
-
-
-            return ret;
         }
+
+
+        public List<CrewMemberSelect> GetAllCrew()
+        {
+            using (boxerdb db = new boxerdb())
+            {
+                var query = (from c in db.CrewMembers
+                             select new CrewMemberSelect() {Id=c.Id, Name=c.CrewName });
+                return query.ToList();
+            }
+        }
+
+
+
+
 
         public Regatta Find(int RegattaID)
         {
@@ -67,6 +73,7 @@ namespace DataRepository.Models
 
         }
 
+       
 
         public Boolean Update(Regatta entity)
         {

@@ -32,6 +32,5 @@ namespace bw01.Models
 
         public System.Data.Entity.DbSet<DataRepository.Models.Contact> Contacts { get; set; }
 
-        public System.Data.Entity.DbSet<DataRepository.Models.CrewMember> CrewMembers { get; set; }
     }
 }

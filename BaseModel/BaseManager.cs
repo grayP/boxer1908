@@ -67,12 +67,16 @@ namespace BaseModel
                     break;
 
                 case "delete":
+                   
+                    Delete();
+                  
                     break;
                 default:
                     break;
             }
         }
 
+       
         //--------------------------------------------------------------------------------------
 
         protected virtual void ListMode()
@@ -102,9 +106,13 @@ namespace BaseModel
             Mode = "Edit";
         }
 
+      
+
+
 
         protected virtual void ResetSearch()
         {
+            ListMode();
 
         }
 
@@ -123,6 +131,12 @@ namespace BaseModel
             AddMode();
 
         }
+
+        protected virtual void Delete()
+        {
+            ListMode();
+        }
+
 
         protected virtual void Save()
         {

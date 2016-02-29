@@ -76,10 +76,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\CrewMember.cs" />
+    <Compile Include="Models\RegattaCrew\CrewMemberSelect.cs" />
+    <Compile Include="Models\Crew\CrewManager.cs" />
+    <Compile Include="Models\Crew\CrewMemberViewModel.cs" />
     <Compile Include="Models\MetaData.cs" />
     <Compile Include="Models\PartialClasses.cs" />
-    <Compile Include="Models\Regatta.cs" />
+    <Compile Include="Models\RegattaCrew\RegattaCrewViewModel.cs" />
+    <Compile Include="Models\RegattaCrew\RegattaCrewManager.cs" />
     <Compile Include="Models\Regatta\RegattaManager.cs" />
     <Compile Include="Models\Regatta\RegattaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

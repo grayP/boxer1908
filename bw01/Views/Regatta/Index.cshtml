@@ -66,11 +66,11 @@
                     {
                         <tr>
                             <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td>@item.RegattaName</td>
+                            <td>@Html.ActionLink(@item.RegattaName,"Index","RegattaCrew",  new { RegattaID = item.Id, RegattaName = item.RegattaName } ,null) </td>
                             <td>@item.RegattaYear</td>
                             <td>@item.StartDate.Value.ToString("dd MMM yyyy")</td>
                             <td>@item.Result</td>
-                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="delete" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a></td>
+                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="delete" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a></td>
                         </tr>
                     }
                 </tbody>
@@ -120,10 +120,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.Entity.StartDate, "Start Date")
-                    @*@Html.TextBoxFor(m => m.Entity.StartDate, new { @class = "form-control datepicker" })*@
-                  
-                    @Html.Kendo().DatePickerFor(m => m.Entity.StartDate).Format("d/MM/yyyy").HtmlAttributes( new { @class = "form-control"  } )
-
+                    @Html.Kendo().DatePickerFor(m => m.Entity.StartDate).Format("d/MM/yyyy").HtmlAttributes(new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
@@ -154,23 +151,6 @@
 
 @section scripts
 {
-    <script>
 
-        $(document).ready(function () {
-            $("[data-pdsa-action]").on("click", function (e) {
-                e.preventDefault();
-                $("#EventCommand").val($(this).data("pdsa-action"));
-                $("#EventArgument").val($(this).data("pdsa-val"));
-                $("form").submit();
-
-
-            });
-        });
-
-
-         
-
-
-    </script>
 
 }

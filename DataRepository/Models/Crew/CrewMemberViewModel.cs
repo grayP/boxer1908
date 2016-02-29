@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace DataRepository.Models
 {
-    public class RegattaViewModel: BaseModel.ViewModelBase
+    public class CrewMemberViewModel: BaseModel.ViewModelBase
     {
 
-        public RegattaViewModel(): base()
+        public CrewMemberViewModel(): base()
         {
             
         }
         
         //Properties--------------
-        public List<Regatta> regattas { get; set; }
-        public Regatta SearchEntity { get; set; }
-        public Regatta Entity { get; set; }
+        public List<CrewMember> CrewMembers { get; set; }
+        public CrewMember SearchEntity { get; set; }
+        public CrewMember Entity { get; set; }
     
         //---------------------------------------------------------------
         protected override void Init()
         {
-          regattas = new List<Regatta>();
-          SearchEntity = new Regatta();
-          Entity = new Regatta();
+          CrewMembers = new List<CrewMember>();
+          SearchEntity = new CrewMember();
+          Entity = new CrewMember();
           base.Init();
         }
 
@@ -35,53 +35,52 @@ namespace DataRepository.Models
 
         protected override void ResetSearch()
         {
-            SearchEntity = new Regatta();
+            SearchEntity = new CrewMember();
         }
 
         protected override void Get()
         {
-            RegattaManager rgm = new RegattaManager();
-            regattas = rgm.Get(SearchEntity);
+            CrewManager cmm = new CrewManager();
+            CrewMembers = cmm.Get(SearchEntity);
         }
 
        protected override void Edit()
         {
-            RegattaManager rgm = new RegattaManager();
-            Entity=rgm.Find(Convert.ToInt32(EventArgument));
+            CrewManager cmm = new CrewManager();
+            Entity =cmm.Find(Convert.ToInt32(EventArgument));
             base.Edit();
         }
 
         protected override void Add()
         {
             IsValid = true;
-            Entity = new Regatta();
-            Entity.RegattaName = "";
-            Entity.StartDate = DateTime.Now;
+            Entity = new CrewMember();
+            Entity.CrewName = "";
             base.Add();
         }
 
 
         protected override void Save()
         {
-            RegattaManager rgm = new RegattaManager();
+            CrewManager cmm = new CrewManager();
             if (Mode == "Add")
             {
-                rgm.Insert(Entity);
+                cmm.Insert(Entity);
             }
             else
             {
-                rgm.Update(Entity);
+                cmm.Update(Entity);
             }
-            ValidationErrors = rgm.ValidationErrors;
+            ValidationErrors = cmm.ValidationErrors;
 
             base.Save();
         }
 
         protected override void Delete()
         {
-            RegattaManager rgm = new RegattaManager();
-            Entity = rgm.Find(Convert.ToInt32(EventArgument));
-            rgm.Delete(Entity);
+            CrewManager cmm = new CrewManager();
+            Entity = cmm.Find(Convert.ToInt32(EventArgument));
+            cmm.Delete(Entity);
             Get();
             base.Delete();
 

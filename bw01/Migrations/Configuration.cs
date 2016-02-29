@@ -27,23 +27,7 @@ namespace bw01.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.CrewMembers.AddOrUpdate(p => p.Name,
-                new CrewMember
-                {
-                    Name="Tyco",
-                    MobilePhone="0409 877 573",
-                    Email="ctyquin@goa.com.au"
-                }
-                ,
-                new CrewMember
-                {
-                    Name = "Clarkey",
-                    MobilePhone = "0409 877 573",
-                    Email = "ctyquin@goa.com.au"
-                    
-                }
-                );
-            
+           
             
 
 

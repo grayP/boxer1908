@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataRepository.Models
 {
-    public class RegattaManager
+    public class CrewManager
     {
 
-        public RegattaManager()
+        public CrewManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
 
-            //  List<tblRegatta> _regattas = new List<tblRegatta>();
 
         }
         //Properties
@@ -23,43 +22,43 @@ namespace DataRepository.Models
 
 
 
-        public List<Regatta> Get(Regatta Entity)
+        public List<CrewMember> Get(CrewMember Entity)
         {
-            List<Regatta> ret = new List<Regatta>();
+            List<CrewMember> ret = new List<CrewMember>();
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Regattas.OrderBy(x=>x.StartDate).ToList<Regatta>();
+                ret = db.CrewMembers.OrderBy(x=>x.Id).ToList<CrewMember>();
             }
 
-            if (!string.IsNullOrEmpty(Entity.RegattaName))
+            if (!string.IsNullOrEmpty(Entity.CrewName))
             {
-                ret = ret.FindAll(p => p.RegattaName.ToLower().StartsWith(Entity.RegattaName));
+                ret = ret.FindAll(p => p.CrewName.ToLower().StartsWith(Entity.CrewName));
             }
 
 
             return ret;
         }
 
-        public Regatta Find(int RegattaID)
-        {
-            Regatta ret = null;
+        public CrewMember Find(int CrewID)
+        { 
+            CrewMember ret = null;
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Regattas.Find(RegattaID);
+                ret = db.CrewMembers.Find(CrewID);
             }
             return ret;
 
         }
 
-        public bool Validate(Regatta entity)
+        public bool Validate(CrewMember entity)
         {
             ValidationErrors.Clear();
 
-            if (!string.IsNullOrEmpty(entity.RegattaName))
+            if (!string.IsNullOrEmpty(entity.CrewName))
             {
-                if (entity.RegattaName.ToLower() == entity.RegattaName)
+                if (entity.CrewName.ToLower() == entity.CrewName)
                 {
-                    ValidationErrors.Add(new KeyValuePair<string, string>("Regatta Name", "Regatta Name cannot be all lower case"));
+                    ValidationErrors.Add(new KeyValuePair<string, string>("Crew Name", "Crew member name cannot be all lower case"));
                 }
 
             }
@@ -68,7 +67,7 @@ namespace DataRepository.Models
         }
 
 
-        public Boolean Update(Regatta entity)
+        public Boolean Update(CrewMember entity)
         {
             bool ret = false;
             if (Validate(entity))
@@ -77,12 +76,12 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        db.Regattas.Attach(entity);
+                        db.CrewMembers.Attach(entity);
                         var modifiedRegatta = db.Entry(entity);
-                        modifiedRegatta.Property(e => e.RegattaName).IsModified = true;
-                        modifiedRegatta.Property(e => e.RegattaYear).IsModified = true;
-                        modifiedRegatta.Property(e => e.Result).IsModified = true;
-                        modifiedRegatta.Property(e => e.StartDate).IsModified = true;
+                        modifiedRegatta.Property(e => e.CrewName).IsModified = true;
+                        modifiedRegatta.Property(e => e.CrewPhone).IsModified = true;
+                        modifiedRegatta.Property(e => e.CrewEmail).IsModified = true;
+                       
                         db.SaveChanges();
                         ret = true;
                     }
@@ -97,7 +96,7 @@ namespace DataRepository.Models
             return ret;
         }
 
-        public Boolean Insert(Regatta entity)
+        public Boolean Insert(CrewMember entity)
         {
             bool ret = false;
             try
@@ -107,15 +106,14 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        Regatta NewRegatta = new Regatta()
+                        CrewMember newCrew = new CrewMember()
                         {
-                            RegattaName = entity.RegattaName,
-                            RegattaYear = entity.RegattaYear,
-                            Result = entity.Result,
-                            StartDate = entity.StartDate
+                            CrewName = entity.CrewName,
+                            CrewEmail = entity.CrewEmail,
+                            CrewPhone = entity.CrewPhone
                         };
 
-                        db.Regattas.Add(NewRegatta);
+                        db.CrewMembers.Add(newCrew);
                         db.SaveChanges();
                         ret = true;
                     }
@@ -131,13 +129,13 @@ namespace DataRepository.Models
         }
 
 
-        public bool Delete(Regatta entity)
+        public bool Delete(CrewMember entity)
         {
             bool ret = false;
             using (boxerdb db = new boxerdb())
             {
-                db.Regattas.Attach(entity);
-                db.Regattas.Remove(entity);
+                db.CrewMembers.Attach(entity);
+                db.CrewMembers.Remove(entity);
                 db.SaveChanges();
                 ret = true;
             }
