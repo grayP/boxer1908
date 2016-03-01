@@ -58,6 +58,11 @@ namespace DataRepository.Models
             regattaCrew = rgm.Get(regatta);
             AllCrew = rgm.GetAllCrew();
 
+            foreach (CrewMemberSelect crew  in AllCrew)
+            {
+                crew.selected = rgm.IsSelected(crew.Id, regatta.Id);
+            }
+
 
         }
 

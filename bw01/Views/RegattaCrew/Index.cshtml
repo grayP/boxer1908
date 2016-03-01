@@ -1,31 +1,29 @@
 ﻿@model DataRepository.Models.RegattaCrewViewModel
 
 @{
-    ViewBag.Title = "Regatta Crew";
+    ViewBag.Title = "Crew List";
 }
 
-<h2>RegattaCrew</h2>
+<h2>Crew List - @Model.regatta.RegattaName</h2>
 
-@using (Html.BeginForm("SubmitSelected","RegattaCrew",FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+@using (Html.BeginForm("Index","RegattaCrew",FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
 {
     <!-- Start Hidden form -->
     @Html.HiddenFor(m => m.EventCommand)
     @Html.HiddenFor(m => m.EventArgument)
     @Html.HiddenFor(m => m.Mode)
+    @Html.HiddenFor(m => m.regatta.Id)
+    @Html.HiddenFor(m => m.regatta.RegattaName)
     <!-- End Hidden form-->
-
-
-
-   
 
 
         <div class="table-responsive">
             <table class="table table-condensed table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Select</th>
-                        <th>Name</th>
-                        <th>hidden</th>
+                        <th style="text-align:center">Select</th>
+                        <th>Crew</th>
+                   
                    </tr>
                 </thead>
                 <tbody>
@@ -33,7 +31,17 @@
                 </tbody>
             </table>
         </div>
-        <input type="submit" name="operation" id="submit" value="Submit Selected" />
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" name="operation" class="btn btn-primary" id="btnSave">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp; Save
+                </button>
+                <a href="@Url.Action("Index","Regatta")" class="btn btn-primary"><i class="glyphicon glyphicon-remove-circle"></i>&nbsp;Cancel
+                </a>
+            </div>
+        </div>
+
+          
     <!-- End Detail Area-->
 
 }

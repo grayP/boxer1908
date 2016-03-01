@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace DataRepository.Models
             {
                 var query = (from c in db.RegattaCrews
                              where c.RegattaId == RegattaID
-                             select c.CrewMemberId );
+                             select c.CrewMemberId);
                 return query.ToList();
             }
         }
@@ -37,13 +38,49 @@ namespace DataRepository.Models
             using (boxerdb db = new boxerdb())
             {
                 var query = (from c in db.CrewMembers
-                             select new CrewMemberSelect() {Id=c.Id, Name=c.CrewName });
+                             select new CrewMemberSelect() { Id = c.Id, Name = c.CrewName });
                 return query.ToList();
             }
         }
 
+        public void UpdateCrewList(CrewMemberSelect crew, Regatta regatta)
+        {
+            using (boxerdb db = new boxerdb())
+            {
+                RegattaCrew crewMember = new RegattaCrew()
+                {
+                    CrewMemberId = crew.Id,
+                    RegattaId = regatta.Id
+                };
 
+                if (crew.selected)
+                {
+                    db.Set<RegattaCrew>().AddOrUpdate(crewMember);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    if (db.RegattaCrews.Any(x => x.CrewMemberId == crewMember.CrewMemberId && x.RegattaId==crewMember.RegattaId))
+                    {
+                        db.RegattaCrews.Attach(crewMember);
+                        db.RegattaCrews.Remove(crewMember);
+                        db.SaveChanges();
+                    }
+                }
+               
+            }
 
+        }
+
+        internal bool IsSelected(int crewId, int regattaId)
+        {
+            bool ret = false;
+            using (boxerdb db= new boxerdb())
+            {
+              ret= db.RegattaCrews.Any(o => o.CrewMemberId == crewId && o.RegattaId == regattaId);
+            }
+            return ret;
+        }
 
 
         public Regatta Find(int RegattaID)
@@ -73,7 +110,7 @@ namespace DataRepository.Models
 
         }
 
-       
+
 
         public Boolean Update(Regatta entity)
         {
