@@ -69,11 +69,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602230128329_Regatta.cs" />
-    <Compile Include="Migrations\201602230128329_Regatta.Designer.cs">
-      <DependentUpon>201602230128329_Regatta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\RegattaCrew\CrewMemberSelect.cs" />
@@ -108,11 +103,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602230128329_Regatta.resx">
-      <DependentUpon>201602230128329_Regatta.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -130,6 +120,7 @@
       <Name>BaseModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
