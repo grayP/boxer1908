@@ -37,7 +37,7 @@ namespace bw01.Controllers
 
                 CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
 
-                CloudBlobContainer container = blobStorage.GetContainerReference("blobimages");
+                CloudBlobContainer container = blobStorage.GetContainerReference("boxerimages");
                  if (container.CreateIfNotExists())
                 {
                 // configure container for public access
@@ -46,9 +46,10 @@ namespace bw01.Controllers
                     container.SetPermissions(permissions);
                 }
 
-                CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference("imageblobs");
 
-                using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
+                using (var fileStream = file.InputStream)
+               // using (var fileStream = System.IO.File.OpenRead(fileName))
                 {
                     blockBlob.UploadFromStream(fileStream);
                 }

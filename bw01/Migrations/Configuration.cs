@@ -10,6 +10,7 @@ namespace bw01.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "bw01.Models.ApplicationDbContext";
         }
 
         protected override void Seed(bw01.Models.ApplicationDbContext context)

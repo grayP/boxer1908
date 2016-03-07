@@ -7,6 +7,8 @@ namespace bw01.Migrations
     {
         public override void Up()
         {
+            DropForeignKey("dbo.ImagesTables", "ImageId", "dbo.ImageInSQLAzures");
+            DropIndex("dbo.ImagesTables", new[] { "ImageId" });
             CreateTable(
                 "dbo.Contacts",
                 c => new
@@ -89,10 +91,46 @@ namespace bw01.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            DropTable("dbo.ImageInBlobs");
+            DropTable("dbo.ImageInSQLAzures");
+            DropTable("dbo.ImagesTables");
         }
         
         public override void Down()
         {
+            CreateTable(
+                "dbo.ImagesTables",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ImageData = c.Binary(storeType: "image"),
+                        ImageId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ImageInSQLAzures",
+                c => new
+                    {
+                        ImageId = c.Int(nullable: false, identity: true),
+                        FileName = c.String(),
+                        ImageName = c.String(),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.ImageId);
+            
+            CreateTable(
+                "dbo.ImageInBlobs",
+                c => new
+                    {
+                        ImageId = c.Int(nullable: false, identity: true),
+                        FileName = c.String(),
+                        ImageName = c.String(),
+                        Description = c.String(),
+                        BlobUri = c.String(),
+                    })
+                .PrimaryKey(t => t.ImageId);
+            
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -109,6 +147,8 @@ namespace bw01.Migrations
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Contacts");
+            CreateIndex("dbo.ImagesTables", "ImageId");
+            AddForeignKey("dbo.ImagesTables", "ImageId", "dbo.ImageInSQLAzures", "ImageId", cascadeDelete: true);
         }
     }
 }

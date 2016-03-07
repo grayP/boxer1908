@@ -211,13 +211,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602220322028_Initial.cs" />
-    <Compile Include="Migrations\201602220322028_Initial.Designer.cs">
-      <DependentUpon>201602220322028_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602222337418_ASPNet.cs" />
-    <Compile Include="Migrations\201602222337418_ASPNet.Designer.cs">
-      <DependentUpon>201602222337418_ASPNet.cs</DependentUpon>
+    <Compile Include="Migrations\201603070746413_Initial.cs" />
+    <Compile Include="Migrations\201603070746413_Initial.Designer.cs">
+      <DependentUpon>201603070746413_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -822,7 +818,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1017,11 +1015,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602220322028_Initial.resx">
-      <DependentUpon>201602220322028_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602222337418_ASPNet.resx">
-      <DependentUpon>201602222337418_ASPNet.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603070746413_Initial.resx">
+      <DependentUpon>201603070746413_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
