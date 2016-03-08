@@ -8,6 +8,7 @@ namespace ImageStorage
 {
 
 
+
     public class UploadedImage
     {
         public UploadedImage()
