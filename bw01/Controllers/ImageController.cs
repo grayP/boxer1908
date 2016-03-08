@@ -1,12 +1,12 @@
-﻿using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
-using System.Configuration;
-using System.IO;
+﻿using Microsoft.WindowsAzure.Storage.Blob;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ImageStorage;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+
+
+
 
 namespace bw01.Controllers
 {
@@ -45,7 +45,7 @@ namespace bw01.Controllers
             ImageStorage.ImageService imageService = new ImageService();
             CloudBlobContainer container= imageService.GetImagesBlobContainer();
 
-            List<UploadedImage> images = new List<UploadedImage>();
+          //  List<UploadedImage> images = new List<UploadedImage>();
 
             //foreach (CloudBlob blob in container.ListBlobs())
             //{
