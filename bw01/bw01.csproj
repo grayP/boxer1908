@@ -992,6 +992,7 @@
     <Content Include="Views\RegattaCrew\Index.cshtml" />
     <Content Include="Views\RegattaCrew\EditorTemplates\CrewMemberSelect.cshtml" />
     <Content Include="Views\image\Index.cshtml" />
+    <Content Include="Views\image\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />
@@ -1012,6 +1013,10 @@
     <ProjectReference Include="..\DataRepository\DataRepository.csproj">
       <Project>{7075e088-3d74-4e3a-a681-b6f77844e064}</Project>
       <Name>DataRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageStorage\ImageStorage.csproj">
+      <Project>{79e031a3-0046-4c41-bdd8-2b124e691076}</Project>
+      <Name>ImageStorage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

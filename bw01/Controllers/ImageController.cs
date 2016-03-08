@@ -1,64 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Storage;
-
-using System.Configuration;
-using Microsoft.WindowsAzure.Storage.Blob;
+using ImageStorage;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace bw01.Controllers
 {
     public class ImageController : Controller
     {
+
+        private readonly IImageService _imageService = new ImageService();
+
+
         // GET: Image
         public ActionResult Index()
         {
-            return View();
+            ImageStorage.UploadedImage image = new ImageStorage.UploadedImage();
+            return View(image);
         }
+
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public async Task<ActionResult> Index(FormCollection formCollection)
         {
-            // Verify that the user selected a file
-            if (file != null && file.ContentLength > 0)
+            ImageStorage.UploadedImage image = new UploadedImage();
+
+            if (Request != null)
             {
-                // extract only the filename
-                var fileName = Path.GetFileName(file.FileName);
-                // store the file inside ~/App_Data/uploads folder
-                //var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                //file.SaveAs(path);
-
-                string connstring = ConfigurationManager.AppSettings["imageStorage"].ToString();
-                var storageAccount = CloudStorageAccount.Parse(connstring);
-
-                CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
-
-                CloudBlobContainer container = blobStorage.GetContainerReference("boxerimages");
-                 if (container.CreateIfNotExists())
-                {
-                // configure container for public access
-                   var permissions = container.GetPermissions();
-                    permissions.PublicAccess = BlobContainerPublicAccessType.Container;
-                    container.SetPermissions(permissions);
-                }
-
-                CloudBlockBlob blockBlob = container.GetBlockBlobReference("imageblobs");
-
-                using (var fileStream = file.InputStream)
-               // using (var fileStream = System.IO.File.OpenRead(fileName))
-                {
-                    blockBlob.UploadFromStream(fileStream);
-                }
-
+                HttpPostedFileBase file = Request.Files["file"];
+                image = await _imageService.CreateUploadedImage(file);
+                await _imageService.AddImageToBlobStorageAsync(image);
             }
-            // redirect back to the index action to show the form once again
-            return RedirectToAction("Index");
+            return View(image);
         }
 
+        [HttpGet]
+        public ActionResult Show()
+        {
+
+            ImageStorage.ImageService imageService = new ImageService();
+            CloudBlobContainer container= imageService.GetImagesBlobContainer();
+
+            List<UploadedImage> images = new List<UploadedImage>();
+
+            //foreach (CloudBlob blob in container.ListBlobs())
+            //{
+            //    images.Add((UploadedImage)blob);
+                
+
+            //}
+
+
+            return View(container.ListBlobs());
+        }
     }
 
 

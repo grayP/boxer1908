@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRepository", "DataRepos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseModel", "BaseModel\BaseModel.csproj", "{ECB4883B-114A-4F92-88A7-BCAA10A4369B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageStorage", "ImageStorage\ImageStorage.csproj", "{79E031A3-0046-4C41-BDD8-2B124E691076}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ECB4883B-114A-4F92-88A7-BCAA10A4369B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECB4883B-114A-4F92-88A7-BCAA10A4369B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECB4883B-114A-4F92-88A7-BCAA10A4369B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79E031A3-0046-4C41-BDD8-2B124E691076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E031A3-0046-4C41-BDD8-2B124E691076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E031A3-0046-4C41-BDD8-2B124E691076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E031A3-0046-4C41-BDD8-2B124E691076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

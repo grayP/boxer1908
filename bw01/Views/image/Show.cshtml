@@ -1,0 +1,31 @@
+﻿@using  Microsoft.WindowsAzure.Storage.Blob;  
+@model IEnumerable<IListBlobItem>
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Boxer Images</h2>
+
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="alert alert-warning">You have @Model.Count() Photos </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+
+            <a class="thumbnail" href="@item.Uri">
+                <img class="img-responsive" src="@item.Uri" style="height: 300px;width:100%;" alt="">
+            </a>
+            @*<a href="@Url.Action("DeleteImage", "Home",new { id = item. })" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>*@
+
+        </div>
+
+
+    }
+</div>

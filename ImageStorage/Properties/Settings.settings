@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ImageStorage.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ImagesContainer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">boxerimages</Value>
+    </Setting>
+    <Setting Name="BlobContainer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">imageblobs</Value>
+    </Setting>
+    <Setting Name="BlobStorageConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;DefaultEndpointsProtocol=https;AccountName=boxerimages;AccountKey=W5qV6U9jaOMtcDLWcoUZE/GNy30RlHLmntEJZ9cS+bdRL5FekQvAUyCg6DYzPfHoCDgVsRvGpuJTtvqsOJy4tQ==;BlobEndpoint=https://boxerimages.blob.core.windows.net/;TableEndpoint=https://boxerimages.table.core.windows.net/;QueueEndpoint=https://boxerimages.queue.core.windows.net/;FileEndpoint=https://boxerimages.file.core.windows.net/&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=boxerimages;AccountKey=W5qV6U9jaOMtcDLWcoUZE/GNy30RlHLmntEJZ9cS+bdRL5FekQvAUyCg6DYzPfHoCDgVsRvGpuJTtvqsOJy4tQ==;BlobEndpoint=https://boxerimages.blob.core.windows.net/;TableEndpoint=https://boxerimages.table.core.windows.net/;QueueEndpoint=https://boxerimages.queue.core.windows.net/;FileEndpoint=https://boxerimages.file.core.windows.net/</Value>
+    </Setting>
+    <Setting Name="ImageRootPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://boxerimages.blob.core.windows.net/boxerimages
+	
+</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

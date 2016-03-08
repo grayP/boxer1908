@@ -1,4 +1,4 @@
-﻿
+﻿@model  ImageStorage.UploadedImage
 @{
     ViewBag.Title = "Index";
 }
@@ -7,31 +7,39 @@
 
 @using (Html.BeginForm("Index", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <input capture="camera" accept="image/*" id="cameraInput" type="file" name="file" />
-    <input type="submit" value="OK" />
-}
+    <div class="jumbotron">
+        <h3>Image Uploader</h3>
+        <div>
+            <input capture="camera" accept="image/*" id="cameraInput" type="file" name="file" style="max-width: 800px; width: 500px;" />
+            <input class="btn btn-primary" type="submit" value="OK" />
+            <div class=”well well-sm”>
+                <img src="@Model.Url" />
+            </div>
+        </div>
+       </div>
+ }
 
 
 
-<center><img id="fotoImg" style="visibility: hidden;"></center>
+          <center><img id="fotoImg" style="visibility: hidden;"></center>
 
 
-<script type="text/javascript">
-    oFReader = new FileReader();
+            <script type="text/javascript">
+                oFReader = new FileReader();
 
-    oFReader.onload = function (oFREvent) {
-        document.getElementById("fotoImg").src = oFREvent.target.result;
-        document.getElementById("fotoImg").style.visibility = "visible";
-        var screenHeight = screen.availHeight;
-        screenHeight = screenHeight - 220;
-        document.getElementById("fotoImg").style.height = screenHeight;
-    };
+                oFReader.onload = function (oFREvent) {
+                    document.getElementById("fotoImg").src = oFREvent.target.result;
+                    document.getElementById("fotoImg").style.visibility = "visible";
+                    var screenHeight = screen.availHeight;
+                    screenHeight = screenHeight - 220;
+                    document.getElementById("fotoImg").style.height = screenHeight;
+                };
 
-    $(function () {
-        $("input:file").change(function () {
-            var input = document.querySelector('input[type=file]');
-            var oFile = input.files[0];
-            oFReader.readAsDataURL(oFile);
-        });
-    });
-</script>
+                $(function () {
+                    $("input:zzzfile").change(function () {
+                        var input = document.querySelector('input[type=file]');
+                        var oFile = input.files[0];
+                        oFReader.readAsDataURL(oFile);
+                    });
+                });
+            </script>
