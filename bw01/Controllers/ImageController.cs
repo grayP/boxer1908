@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ImageStorage;
-
-
-
+using System.Drawing;
 
 namespace bw01.Controllers
 {
@@ -25,14 +23,18 @@ namespace bw01.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Index(FormCollection formCollection)
+        public async Task<ActionResult> Index(FormCollection formCollection, UploadedImage model)
         {
-            ImageStorage.UploadedImage image = new UploadedImage();
+            ImageStorage.UploadedImage image = new UploadedImage
+            {Regatta=model.Regatta,
+            Caption=model.Regatta};
+           
+
 
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["file"];
-                image = await _imageService.CreateUploadedImage(file);
+                image = await _imageService.CreateUploadedImage(file, image);
                 await _imageService.AddImageToBlobStorageAsync(image);
             }
             return View(image);

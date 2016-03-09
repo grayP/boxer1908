@@ -8,7 +8,7 @@ namespace ImageStorage
 
     public interface IImageService
     {
-        Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file);
+        Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file, UploadedImage oldImage);
         Task AddImageToBlobStorageAsync(UploadedImage image);
     }
 

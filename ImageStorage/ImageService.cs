@@ -2,6 +2,9 @@
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Configuration;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -29,18 +32,23 @@ namespace ImageStorage
         }
 
 
-        public async Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file)
+        public async Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file, UploadedImage oldImage)
         {
             if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
             {
                 byte[] fileBytes = new byte[file.ContentLength];
                 await file.InputStream.ReadAsync(fileBytes, 0, Convert.ToInt32(file.ContentLength));
 
-
+                Image _image = Image.FromFile(file.FileName);
+                CreateThumbnails(_image, oldImage);
+               
 
                 return new UploadedImage
                 {
                     ContentType = file.ContentType,
+                    Caption=oldImage.Caption,
+                    Regatta=oldImage.Regatta,
+                    Thumbnails=oldImage.Thumbnails,
                     Data = fileBytes,
                     Name = file.FileName,
                     Url = String.Format("{0}/{1}",
@@ -50,6 +58,45 @@ namespace ImageStorage
             }
             return null;
         }
+
+        private void CreateThumbnails(Image image, UploadedImage oldImage)
+        {
+            Thumbnail thumb = new Thumbnail();
+            thumb.bitmap = ResizeImage(image, 200, 200);
+            oldImage.Thumbnails.Add(thumb);
+
+          
+
+
+        }
+
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
+
+
+
 
 
         public async Task AddImageToBlobStorageAsync(UploadedImage image)

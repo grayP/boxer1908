@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +25,22 @@ namespace ImageStorage
         public byte[] Data { get; set; }
         public string Url { get; set; }
         public List<Thumbnail> Thumbnails { get; set; }
-    }
+
+
+
+
+  
+
+ }
     public class Thumbnail
     {
         public int Width { get; set; }
         public int Height { get; set; }
         public string Url { get; set; }
+        public Bitmap bitmap { get; set; }
     }
+
+   
 
 
 }
