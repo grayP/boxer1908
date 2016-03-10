@@ -10,6 +10,7 @@ namespace ImageStorage
     {
         Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file, UploadedImage oldImage);
         Task AddImageToBlobStorageAsync(UploadedImage image);
+        
     }
 
 

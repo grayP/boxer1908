@@ -14,6 +14,17 @@
           <Property Name="CrewEmail" Type="nvarchar" MaxLength="255" />
           <Property Name="CrewPhone" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThumbNailSmall" Type="image" />
+          <Property Name="ThumbNailLarge" Type="image" />
+          <Property Name="ImageURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="RegattaID" Type="int" />
+          <Property Name="Caption" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Regatta">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,6 +45,7 @@
         </EntityType>
         <EntityContainer Name="boxerdbModelStoreContainer">
           <EntitySet Name="CrewMember" EntityType="Self.CrewMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Regatta" EntityType="Self.Regatta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegattaCrew" EntityType="Self.RegattaCrew" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -45,6 +57,7 @@
           <EntitySet Name="CrewMembers" EntityType="boxerdbModel.CrewMember" />
           <EntitySet Name="Regattas" EntityType="boxerdbModel.Regatta" />
           <EntitySet Name="RegattaCrews" EntityType="boxerdbModel.RegattaCrew" />
+          <EntitySet Name="Images" EntityType="boxerdbModel.Image" />
         </EntityContainer>
         <EntityType Name="CrewMember">
           <Key>
@@ -72,6 +85,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RegattaId" Type="Int32" />
           <Property Name="CrewMemberId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThumbNailSmall" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ThumbNailLarge" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RegattaID" Type="Int32" />
+          <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -105,6 +129,18 @@
               <MappingFragment StoreEntitySet="RegattaCrew">
                 <ScalarProperty Name="CrewMemberId" ColumnName="CrewMemberId" />
                 <ScalarProperty Name="RegattaId" ColumnName="RegattaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="boxerdbModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="RegattaID" ColumnName="RegattaID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="ThumbNailLarge" ColumnName="ThumbNailLarge" />
+                <ScalarProperty Name="ThumbNailSmall" ColumnName="ThumbNailSmall" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

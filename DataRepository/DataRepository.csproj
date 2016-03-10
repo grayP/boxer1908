@@ -69,8 +69,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Image\ImageManager.cs" />
+    <Compile Include="Models\Image\ImageViewModel.cs" />
     <Compile Include="Models\RegattaCrew\CrewMemberSelect.cs" />
     <Compile Include="Models\Crew\CrewManager.cs" />
     <Compile Include="Models\Crew\CrewMemberViewModel.cs" />
@@ -119,8 +124,14 @@
       <Project>{ecb4883b-114a-4f92-88a7-bcaa10a4369b}</Project>
       <Name>BaseModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ImageStorage\ImageStorage.csproj">
+      <Project>{79e031a3-0046-4c41-bdd8-2b124e691076}</Project>
+      <Name>ImageStorage</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,68 +1,66 @@
-﻿using System;
+﻿using ImageStorage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DataRepository.Models
 {
-
-
-    public class RegattaManager
+    public class ImageManager
     {
 
-        public RegattaManager()
+        public ImageManager()
         {
             ValidationErrors = new List<KeyValuePair<string, string>>();
 
-            //  List<tblRegatta> _regattas = new List<tblRegatta>();
 
         }
         //Properties
         public List<KeyValuePair<string, string>> ValidationErrors { get; set; }
 
 
-       
 
 
-        public List<Regatta> Get(Regatta Entity)
+
+        public List<Image> Get(Image Entity)
         {
-            List<Regatta> ret = new List<Regatta>();
+            List<Image> ret = new List<Image>();
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Regattas.OrderBy(x=>x.StartDate).ToList<Regatta>();
-                
+                ret = db.Images.OrderBy(x=>x.Id).ToList<Image>();
             }
 
-            if (!string.IsNullOrEmpty(Entity.RegattaName))
+            if (!string.IsNullOrEmpty(Entity.Caption))
             {
-                ret = ret.FindAll(p => p.RegattaName.ToLower().StartsWith(Entity.RegattaName));
+                ret = ret.FindAll(p => p.Caption.ToLower().StartsWith(Entity.Caption));
             }
 
 
             return ret;
         }
 
-        public Regatta Find(int RegattaID)
+        public Image Find(int ImageID)
         {
-            Regatta ret = null;
+            Image ret = null;
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Regattas.Find(RegattaID);
+                ret = db.Images.Find(ImageID);
             }
             return ret;
 
         }
 
-        public bool Validate(Regatta entity)
+        public bool Validate(Image entity)
         {
             ValidationErrors.Clear();
 
-            if (!string.IsNullOrEmpty(entity.RegattaName))
+            if (!string.IsNullOrEmpty(entity.Caption))
             {
-                if (entity.RegattaName.ToLower() == entity.RegattaName)
+                if (entity.Caption.ToLower() == entity.Caption)
                 {
-                    ValidationErrors.Add(new KeyValuePair<string, string>("Regatta Name", "Regatta Name cannot be all lower case"));
+                    ValidationErrors.Add(new KeyValuePair<string, string>("Caption", "Caption cannot be all lower case"));
                 }
 
             }
@@ -71,7 +69,7 @@ namespace DataRepository.Models
         }
 
 
-        public Boolean Update(Regatta entity)
+        public Boolean Update(Image entity)
         {
             bool ret = false;
             if (Validate(entity))
@@ -80,12 +78,12 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        db.Regattas.Attach(entity);
-                        var modifiedRegatta = db.Entry(entity);
-                        modifiedRegatta.Property(e => e.RegattaName).IsModified = true;
-                        modifiedRegatta.Property(e => e.RegattaYear).IsModified = true;
-                        modifiedRegatta.Property(e => e.Result).IsModified = true;
-                        modifiedRegatta.Property(e => e.StartDate).IsModified = true;
+                        db.Images.Attach(entity);
+                        var modifiedImage = db.Entry(entity);
+                        modifiedImage.Property(e => e.Caption).IsModified = true;
+                        modifiedImage.Property(e => e.RegattaID).IsModified = true;
+                        //modifiedImage.Property(e => e.ImageURL).IsModified = true;
+                       
                         db.SaveChanges();
                         ret = true;
                     }
@@ -100,7 +98,8 @@ namespace DataRepository.Models
             return ret;
         }
 
-        public Boolean Insert(Regatta entity)
+
+        public Boolean Insert(Image entity)
         {
             bool ret = false;
             try
@@ -110,15 +109,16 @@ namespace DataRepository.Models
                 {
                     using (boxerdb db = new boxerdb())
                     {
-                        Regatta NewRegatta = new Regatta()
+                        Image newImage = new Image()
                         {
-                            RegattaName = entity.RegattaName,
-                            RegattaYear = entity.RegattaYear,
-                            Result = entity.Result,
-                            StartDate = entity.StartDate
+                            Caption = entity.Caption,
+                            RegattaID = entity.RegattaID,
+                            ImageURL = entity.ImageURL ,
+                            ThumbNailLarge=entity.ThumbNailLarge,
+                            ThumbNailSmall=entity.ThumbNailSmall
                         };
 
-                        db.Regattas.Add(NewRegatta);
+                        db.Images.Add(newImage);
                         db.SaveChanges();
                         ret = true;
                     }
@@ -134,13 +134,13 @@ namespace DataRepository.Models
         }
 
 
-        public bool Delete(Regatta entity)
+        public bool Delete(Image entity)
         {
             bool ret = false;
             using (boxerdb db = new boxerdb())
             {
-                db.Regattas.Attach(entity);
-                db.Regattas.Remove(entity);
+                db.Images.Attach(entity);
+                db.Images.Remove(entity);
                 db.SaveChanges();
                 ret = true;
             }

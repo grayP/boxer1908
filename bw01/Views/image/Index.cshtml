@@ -1,4 +1,5 @@
-﻿@model  ImageStorage.UploadedImage
+﻿@using DataRepository.Models
+@model  ImageViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -7,50 +8,66 @@
 
 @using (Html.BeginForm("Index", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+
     <div class="jumbotron">
         <h3>Image Uploader</h3>
         <div>
-            <input capture="camera" accept="image/*" id="cameraInput" type="file" name="file" style="max-width: 800px; width: 500px;" />
-           
+            <div class="form-group">
+                <input capture="camera" accept="image/*" id="cameraInput" type="file" name="file" style="max-width: 800px; width: 500px;" class="btn btn-primary" />
+            </div>
             <div class="well well-sm">
-                <img src="@Model.Url" />
+                <img src="@Model.imagetoUpload.Url" id="fotoImg" />
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Caption,"Caption")
-                @Html.TextBoxFor(m => m.Caption, new { @class = "form-control" })
-             </div>
+                @Html.LabelFor(m => m.imagetoUpload.Caption, "Photo Caption")
+                @Html.TextBoxFor(m => m.imagetoUpload.Caption, new { @class = "form-control" })
+            </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Regatta, "Regatta")
-                @Html.TextBoxFor(m => m.Regatta, new { @class = "form-control" })
+                @Html.LabelFor(m => m.imagetoUpload.RegattaID, "Regatta")
+                @Html.TextBoxFor(m => m.imagetoUpload.RegattaID, new { @class = "form-control" })
+                @*@Html.DropDownListFor(m => m.imagetoUpload.RegattaID ,Model.RegattaList)*@
             </div>
-                <input class="btn btn-primary" type="submit" value="OK" />
-            </div>
-       </div>
- }
+
+            @if (!Model.imagetoUpload.Status)
+                {
+
+                <input class="btn btn-primary" type="submit" value="Upload Photo" />
+                }
+                else
+                {
+                @Html.ActionLink("Add Another Image","Index","Image",null, new { @class = "btn btn-primary" })
+                }
+            
+            @Html.ActionLink("Image Gallery", "Show", "Image", null, new { @class = "btn btn-primary" })
+
+            @Html.ActionLink("Cancel", "Index", "Regatta", null, new { @class = "btn btn-primary" })
 
 
-<div>
+        </div>
 
-          <center><img id="fotoImg" style="visibility: hidden;"></center>
     </div>
+}
 
 
-            <script type="text/javascript">
-                oFReader = new FileReader();
 
-                oFReader.onload = function (oFREvent) {
-                    document.getElementById("fotoImg").src = oFREvent.target.result;
-                    document.getElementById("fotoImg").style.visibility = "visible";
-                    var screenHeight = screen.availHeight;
-                    screenHeight = screenHeight - 220;
-                    document.getElementById("fotoImg").style.height = screenHeight;
-                };
 
-                $(function () {
-                    $("input:file").change(function () {
-                        var input = document.querySelector('input[type=file]');
-                        var oFile = input.files[0];
-                        oFReader.readAsDataURL(oFile);
-                    });
-                });
-            </script>
+
+<script type="text/javascript">
+    oFReader = new FileReader();
+
+    oFReader.onload = function (oFREvent) {
+        document.getElementById("fotoImg").src = oFREvent.target.result;
+        document.getElementById("fotoImg").style.visibility = "visible";
+        var screenHeight = screen.availHeight;
+        screenHeight = screenHeight - 220;
+        document.getElementById("fotoImg").style.height = screenHeight;
+    };
+
+    $(function () {
+        $("input:file").change(function () {
+            var input = document.querySelector('input[type=file]');
+            var oFile = input.files[0];
+            oFReader.readAsDataURL(oFile);
+        });
+    });
+</script>

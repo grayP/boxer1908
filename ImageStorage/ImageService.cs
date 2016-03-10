@@ -39,7 +39,9 @@ namespace ImageStorage
                 byte[] fileBytes = new byte[file.ContentLength];
                 await file.InputStream.ReadAsync(fileBytes, 0, Convert.ToInt32(file.ContentLength));
 
-                Image _image = Image.FromFile(file.FileName);
+
+
+                Image _image = Image.FromStream(file.InputStream);
                 CreateThumbnails(_image, oldImage);
                
 
@@ -47,7 +49,7 @@ namespace ImageStorage
                 {
                     ContentType = file.ContentType,
                     Caption=oldImage.Caption,
-                    Regatta=oldImage.Regatta,
+                    RegattaID=oldImage.RegattaID,
                     Thumbnails=oldImage.Thumbnails,
                     Data = fileBytes,
                     Name = file.FileName,
@@ -61,17 +63,34 @@ namespace ImageStorage
 
         private void CreateThumbnails(Image image, UploadedImage oldImage)
         {
-            Thumbnail thumb = new Thumbnail();
-            thumb.bitmap = ResizeImage(image, 200, 200);
-            oldImage.Thumbnails.Add(thumb);
+         
 
+            for (int i = 200; i <=600 ; i+=200)
+            {
+                Thumbnail thumb = new Thumbnail()
+                {
+                    bitmap = ResizeImage(image, i),
+                    Height = i
+                };
+                 oldImage.Thumbnails.Add(thumb);
+            }
           
+
 
 
         }
 
-        public static Bitmap ResizeImage(Image image, int width, int height)
+        public static byte[] ImageToByte(Image img)
         {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
+        }
+
+        public static Bitmap ResizeImage(Image image,  int height)
+        {
+            double aspectRatio = (double)image.Height / image.Width;
+            int width= (int)(height/aspectRatio);
+
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
 

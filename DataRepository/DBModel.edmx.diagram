@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="boxerdbModel.CrewMember" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="boxerdbModel.Regatta" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="boxerdbModel.RegattaCrew" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="boxerdbModel.Image" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
