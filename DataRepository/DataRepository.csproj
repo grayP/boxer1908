@@ -81,6 +81,8 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Image\ImageManager.cs" />
     <Compile Include="Models\Image\ImageViewModel.cs" />
+    <Compile Include="Models\Location\LocationManager.cs" />
+    <Compile Include="Models\Location\LocationViewModel.cs" />
     <Compile Include="Models\RegattaCrew\CrewMemberSelect.cs" />
     <Compile Include="Models\Crew\CrewManager.cs" />
     <Compile Include="Models\Crew\CrewMemberViewModel.cs" />
@@ -134,9 +136,6 @@
       <Project>{79e031a3-0046-4c41-bdd8-2b124e691076}</Project>
       <Name>ImageStorage</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
