@@ -32,3 +32,20 @@ textarea {
 #fotoImg {
 	width: 98%;		
 }
+
+div.desc{
+    background-color: #000;
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    opacity: 0.3;
+    position: relative;
+    right:0;
+    filter: alpha(opacity=20);
+    padding: 5px;
+}
+
+.fix{
+    width: 100%;
+    padding: 0px;
+}

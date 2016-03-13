@@ -41,8 +41,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,6 +74,9 @@
     <Compile Include="Image.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Image\ImageManager.cs" />
@@ -84,6 +89,7 @@
     <Compile Include="Models\RegattaCrew\RegattaCrewViewModel.cs" />
     <Compile Include="Models\RegattaCrew\RegattaCrewManager.cs" />
     <Compile Include="Models\Regatta\RegattaManager.cs" />
+    <Compile Include="Models\Regatta\RegattaSelect.cs" />
     <Compile Include="Models\Regatta\RegattaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regatta.cs">

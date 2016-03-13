@@ -79,7 +79,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ThumbNail.cs" />
     <Compile Include="UploadedImage.cs" />
   </ItemGroup>
   <ItemGroup>

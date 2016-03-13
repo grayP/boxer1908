@@ -14,9 +14,10 @@ namespace ImageStorage
             // hard-coded to a single thumbnail at 200 x 300 for now
             Thumbnails = new List<Thumbnail>();
         }
+        public int Id { get; set; }
         public bool Status { get; set; }
         public string Name { get; set; }
-        public int RegattaID { get; set; }
+        public int? RegattaID { get; set; }
         public string Caption { get; set; }
         public string ContentType { get; set; }
         public byte[] Data { get; set; }

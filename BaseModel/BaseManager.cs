@@ -67,10 +67,8 @@ namespace BaseModel
                     break;
 
                 case "delete":
-                   
                     Delete();
-                  
-                    break;
+                     break;
                 default:
                     break;
             }
@@ -136,7 +134,7 @@ namespace BaseModel
         {
             ListMode();
         }
-
+      
 
         protected virtual void Save()
         {

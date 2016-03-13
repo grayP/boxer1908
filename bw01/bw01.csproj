@@ -205,6 +205,7 @@
     <Compile Include="Controllers\CrewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegattaController.cs" />
     <Compile Include="Controllers\RegattaCrewController.cs" />
@@ -993,6 +994,7 @@
     <Content Include="Views\RegattaCrew\EditorTemplates\CrewMemberSelect.cshtml" />
     <Content Include="Views\image\Index.cshtml" />
     <Content Include="Views\image\Show.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />

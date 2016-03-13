@@ -58,6 +58,22 @@ namespace DataRepository.Models
 
             if (!string.IsNullOrEmpty(entity.Caption))
             {
+                //if (entity.Caption.ToLower() == entity.Caption)
+                //{
+                //    ValidationErrors.Add(new KeyValuePair<string, string>("Caption", "Caption cannot be all lower case"));
+                //}
+
+            }
+            return (ValidationErrors.Count == 0);
+
+        }
+
+        public bool Validate(UploadedImage entity)
+        {
+            ValidationErrors.Clear();
+
+            if (!string.IsNullOrEmpty(entity.Caption))
+            {
                 if (entity.Caption.ToLower() == entity.Caption)
                 {
                     ValidationErrors.Add(new KeyValuePair<string, string>("Caption", "Caption cannot be all lower case"));
@@ -69,13 +85,20 @@ namespace DataRepository.Models
         }
 
 
-        public Boolean Update(Image entity)
+        public Boolean  Update(UploadedImage imageToUpDate)
         {
             bool ret = false;
-            if (Validate(entity))
+            if (Validate(imageToUpDate))
             {
                 try
                 {
+                    Image entity = new Image() { 
+                        Id=imageToUpDate.Id,
+                        Caption = imageToUpDate.Caption,
+                        RegattaID = imageToUpDate.RegattaID,
+                    };
+
+
                     using (boxerdb db = new boxerdb())
                     {
                         db.Images.Attach(entity);
@@ -99,27 +122,26 @@ namespace DataRepository.Models
         }
 
 
-        public Boolean Insert(Image entity)
+        public async Task<Boolean> Insert(UploadedImage imageToUpload)
         {
             bool ret = false;
             try
             {
+                Image entity = new Image();
+                entity.Caption = imageToUpload.Caption;
+                entity.RegattaID = imageToUpload.RegattaID;
+                entity.ImageURL = imageToUpload.Url;
+                entity.ThumbNailLarge = ImageService.ImageToByte(imageToUpload.Thumbnails[1].bitmap);
+                entity.ThumbNailSmall = ImageService.ImageToByte(imageToUpload.Thumbnails[0].bitmap);
+
                 ret = Validate(entity);
                 if (ret)
                 {
-                    using (boxerdb db = new boxerdb())
+                     using (boxerdb db = new boxerdb())
                     {
-                        Image newImage = new Image()
-                        {
-                            Caption = entity.Caption,
-                            RegattaID = entity.RegattaID,
-                            ImageURL = entity.ImageURL ,
-                            ThumbNailLarge=entity.ThumbNailLarge,
-                            ThumbNailSmall=entity.ThumbNailSmall
-                        };
-
-                        db.Images.Add(newImage);
-                        db.SaveChanges();
+  
+                        db.Images.Add(entity);
+                        await db.SaveChangesAsync();
                         ret = true;
                     }
                 }
