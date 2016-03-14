@@ -1,6 +1,7 @@
 ﻿using DataRepository.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace bw01.Controllers
 {
@@ -16,6 +17,7 @@ namespace bw01.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Index(CrewMemberViewModel cvm)
         {
             cvm.IsValid = ModelState.IsValid;
@@ -37,7 +39,25 @@ namespace bw01.Controllers
             return View(cvm);
         }
 
+        [ChildActionOnly]
+        public ActionResult ShowSearchForm(CrewMemberViewModel cvm)
+        {
+            if (Roles.IsUserInRole("Admin"))
+            {
+                return PartialView("~/Views/Crew/partial/_CrewMenu.cshtml",cvm);
+            }
+            return null;
+        }
 
-       
+        [ChildActionOnly]
+        public ActionResult ShowTableData(CrewMemberViewModel cvm)
+        {
+            if (Roles.IsUserInRole("Admin"))
+            {
+                return PartialView("~/Views/Crew/partial/_CrewData.cshtml", cvm);
+            }
+            return PartialView("~/Views/Crew/partial/_CrewDataOpen.cshtml", cvm); ;
+        }
+
     }
 }

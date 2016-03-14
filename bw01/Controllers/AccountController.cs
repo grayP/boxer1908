@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using bw01.Models;
+using System.Web.Security;
 
 namespace bw01.Controllers
 {
@@ -57,6 +58,10 @@ namespace bw01.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
+
+
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -72,6 +77,9 @@ namespace bw01.Controllers
             {
                 return View(model);
             }
+           
+
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

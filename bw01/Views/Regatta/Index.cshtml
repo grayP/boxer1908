@@ -66,7 +66,10 @@
                     {
                         <tr>
                             <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td>@Html.ActionLink(@item.RegattaName,"Index","RegattaCrew",  new { RegattaID = item.Id, RegattaName = item.RegattaName } ,null) </td>
+                            <td>
+                                @Html.ActionLink(@item.RegattaName, "Index", "RegattaCrew", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
+                                <a href="@Url.Action("Index", "Image",new { RegattaID = item.Id })" class="btn btn-sm btn-default" alt="Photos of this regatta"><i class="glyphicon glyphicon-picture"></i></a>
+                            </td>
                             <td>@item.RegattaYear</td>
                             <td>@item.StartDate.Value.ToString("dd MMM yyyy")</td>
                             <td>@item.Result</td>

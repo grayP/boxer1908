@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using bw01.Models;
+using System.Web.Security;
 
 namespace bw01.Controllers
 {
@@ -72,7 +73,31 @@ namespace bw01.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            SeedUsers();
+
+
             return View(model);
+        }
+
+        private void SeedUsers()
+        {
+            string _role = "Admin";
+            if (!Roles.RoleExists(_role))
+                Roles.CreateRole(_role);
+
+            if (!Roles.IsUserInRole("gray.pritchett@optusnet.com.au", _role))
+                Roles.AddUserToRole("gray.pritchett@optusnet.com.au", _role);
+            if (!Roles.IsUserInRole("ctyquin@goa.com.au", _role))
+                Roles.AddUserToRole("ctyquin@goa.com.au", _role);
+            if (!Roles.IsUserInRole("GClarke@bne.mcgees.com.au", _role))
+                Roles.AddUserToRole("GClarke@bne.mcgees.com.au", _role);
+            if (!Roles.IsUserInRole("alex@propsol.com.au", _role))
+                Roles.AddUserToRole("alex@propsol.com.au", _role);
+            if (!Roles.IsUserInRole("pcrooke@bretts.com.au", _role))
+                Roles.AddUserToRole("pcrooke@bretts.com.au", _role);
+            if (!Roles.IsUserInRole("fraser@rsaarchitects.net", _role))
+                Roles.AddUserToRole("fraser@rsaarchitects.net", _role);
         }
 
         //
