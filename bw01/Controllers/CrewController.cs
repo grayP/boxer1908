@@ -39,15 +39,25 @@ namespace bw01.Controllers
             return View(cvm);
         }
 
-          [ChildActionOnly]
-          public ActionResult ShowSearchForm(CrewMemberViewModel cvm)
+        [ChildActionOnly]
+        public ActionResult ShowSearchForm(CrewMemberViewModel cvm)
         {
             if (Roles.IsUserInRole("Admin"))
             {
-                return PartialView("_CrewMenu",cvm);
+                return PartialView("~/Views/Crew/partial/_CrewMenu.cshtml",cvm);
             }
             return null;
         }
-       
+
+        [ChildActionOnly]
+        public ActionResult ShowTableData(CrewMemberViewModel cvm)
+        {
+            if (Roles.IsUserInRole("Admin"))
+            {
+                return PartialView("~/Views/Crew/partial/_CrewData.cshtml", cvm);
+            }
+            return PartialView("~/Views/Crew/partial/_CrewDataOpen.cshtml", cvm); ;
+        }
+
     }
 }

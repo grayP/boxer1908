@@ -998,11 +998,12 @@
     <Content Include="Views\image\Index.cshtml" />
     <Content Include="Views\image\Show.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
-    <Content Include="Views\Shared\_CrewMenu.cshtml" />
+    <Content Include="Views\Crew\partial\_CrewMenu.cshtml" />
+    <Content Include="Views\Crew\partial\_CrewData.cshtml" />
+    <Content Include="Views\Crew\partial\_CrewDataOpen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />
-    <Folder Include="Views\Crew\partial\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

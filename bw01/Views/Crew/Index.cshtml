@@ -23,31 +23,7 @@
      <!-- Start List Area  -->
     if (Model.IsListAreaVisible)
     {
-        <div class="table-responsive">
-            <table class="table table-condensed table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="pdsa-action-button-column">Edit</th>
-                        <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th class="pdsa-action-button-column">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.CrewMembers)
-                    {
-                        <tr>
-                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td>@item.CrewName</td>
-                            <td>@item.CrewPhone</td>
-                            <td>@item.CrewEmail</td>
-                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="delete" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+       @Html.Action("ShowTableData", "Crew", Model)
     }
     <!-- End List Area-->
     <!--Detail Area-->
