@@ -1,61 +1,46 @@
 ﻿using System;
 using System.Web.Mvc;
+using DataRepository;
 using DataRepository.Models;
+using Microsoft.AspNet.Identity;
 
 namespace bw01.Controllers
 {
     public class LocationController : Controller
     {
 
-        private LocationViewModel lcm; 
+        private LocationViewModel lcm=new LocationViewModel(); 
         // GET: Location
         public ActionResult Index()
         {
-            return View();
+            lcm.Mode="List";
+            lcm.HandleRequest();
+            
+            return View(lcm);
         }
+
         [HttpPost]
-        public ActionResult Index(Decimal Lat, Decimal Long)
+         public void Add(Decimal Lat, Decimal Long, DateTime? ReadingDateTime)
         {
-
-            try
+           try
             {
-               
-                
-                Console.WriteLine("Lat=" + Lat);
-                Console.WriteLine("Long=" + Long);
 
+                LocationManager lm = new LocationManager();
+                Location newLoc = new Location()
+                {
+                    Latitude = Lat,
+                    Longitude = Long,
+                    ReadingDateTime = (ReadingDateTime ?? DateTime.Now),
+                    Phone = User.Identity.GetUserName() ?? "Guest"
+                };
 
-             return View();
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.InnerException);
-                return View();
-            }
-        }
-        [HttpPost]
-        public ActionResult Add(Decimal Lat, Decimal Long, DateTime ReadingDateTime, Single heading, Single speed)
-        {
-
-            try
-            {
-                lcm = new LocationViewModel();
-                lcm.Mode = "add";
-                lcm.Entity.Latitude = Lat;
-                lcm.Entity.Longitude = Long;
-                lcm.Entity.ReadingDateTime = ReadingDateTime;
-
-
-                Console.WriteLine("Lat=" + Lat);
-                Console.WriteLine("Long=" + Long);
-
-
-                return View();
+                lm.Insert(newLoc);
+               // return View();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.InnerException);
-                return View();
+              //  return View();
             }
         }
     }

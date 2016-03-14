@@ -25,8 +25,6 @@
           <Property Name="RegattaID" Type="int" />
           <Property Name="Caption" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'boxerdb.dbo.Location' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="Id" />
@@ -58,17 +56,9 @@ warning 6002: The table/view 'boxerdb.dbo.Location' does not have a primary key 
         <EntityContainer Name="boxerdbModelStoreContainer">
           <EntitySet Name="CrewMember" EntityType="Self.CrewMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Regatta" EntityType="Self.Regatta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegattaCrew" EntityType="Self.RegattaCrew" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Location" EntityType="Self.Location" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Location].[Id] AS [Id], 
-    [Location].[ReadingDateTime] AS [ReadingDateTime], 
-    [Location].[Latitude] AS [Latitude], 
-    [Location].[Longitude] AS [Longitude], 
-    [Location].[Phone] AS [Phone]
-    FROM [dbo].[Location] AS [Location]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->

@@ -5,25 +5,37 @@
 }
 
 <div>
-    <ul>
-        <li>
-            <div style="float:left; width:75px;">Latitide</div>
-            <input id="lat" type="text" readonly/>
-        </li>
-        <li>
-            <div style="float:left; width:75px;">Longitude</div>
-            <input id="long" type="text" readonly/>
-        </li>
-    </ul>
+    
+    <div style="float:left; width:75px;">
+        Lat Long
+        <input id="lat" type="text" readonly class="form-control labels" style="width:150px;" />
+
+
+        <input id="long" type="text" readonly class="form-control labels" style="width:150px;" />
+    </div>
 </div>
 
 <row>
-    <div id="mapholder" style="width:500px;height:500px"></div>
-    <input id="lblCommentsNotification" type="text" readonly />
+    <div id="mapholder" style="height:90%;"></div>
+    <input id="lblCommentsNotification" class="labels" type="text" readonly />
 </row>
 
 <script language="javascript" type="text/javascript">
-    var x = document.getElementById("demo");
+
+    function DECtoDMS(dd) {
+        var vars = dd.split('.');
+        var deg = vars[0];
+        var tempma = "0." + vars[1];
+        tempma = tempma * 3600;
+        var min = Math.floor(tempma / 60);
+        var sec = tempma - (min * 60);
+    
+        return deg + '° ' + min + " " + sec.toFixed(2);
+    }
+    var x = document.getElementById("mapholder");
+
+
+
 
     $(function () {
         if (navigator.geolocation) {
@@ -33,28 +45,23 @@
         }
 
 
-     
-
-       
-
-
-
         function showPosition(position) {
             var latlon = position.coords.latitude + "," + position.coords.longitude;
             var coordinates = position.coords;
-            
-            $("#lat").val(coordinates.latitude);
-            $("#long").val(coordinates.longitude);
+            var Latitude = coordinates.latitude + '';
+            var Longitude = coordinates.longitude + '';
+            $("#lat").val(DECtoDMS(Latitude));
+            $("#long").val(DECtoDMS(Longitude));
             var timestampDate = new Date(position.timestamp);
             $.ajax({
                 url: '@Url.Action("Add")',
-                data: { 'lat': coordinates.latitude, 'long': coordinates.longitude, 'ReadingDateTime': timestampDate, 'Heading':coordinates.heading, 'Speed':coordinates.speed },
+                data: { 'lat': coordinates.latitude, 'long': coordinates.longitude, 'ReadingDateTime': timestampDate},
                 type: "POST",
-                cache: false,
-                success: function (response) {
+               cache: false,
+               success: function (response) {
                     var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
-                     + latlon + "&zoom=14&size=400x300&sensor=false";
-                    document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'>";
+                     + latlon + "&zoom=14&size=600x600&sensor=false";
+                    document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'  style='height:90%;'>";
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                   
@@ -62,7 +69,7 @@
                         alert(xhr.responseText);
                         alert(thrownError);
                    
-                    $('#lblCommentsNotification').text("Error encountered while saving the comments.");
+                  
                 }
             });
 
@@ -87,5 +94,9 @@
                     break;
             }
         }
+
+
+       
+     
     });
 </script>
