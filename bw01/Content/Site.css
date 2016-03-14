@@ -25,6 +25,32 @@ body {
     padding-right: 30px;
 }
 
+
+.quotation_div {
+   
+    display: table;
+    height:500px;
+    background-size: 100% auto;
+}
+
+.quotation_div .overlay {
+    display: table-cell;
+    vertical-align: middle;
+   
+}
+  .overlay p {
+    text-align: center;
+    color: white;
+    font-family:'Times New Roman';
+    font-size: 300%;
+    font-weight:100;
+    line-height: 3;
+    padding: 0 10%;
+    opacity: .6;
+   
+}
+
+
 #footer {
     position: fixed;
     bottom: 0;

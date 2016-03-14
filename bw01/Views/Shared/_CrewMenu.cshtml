@@ -1,0 +1,27 @@
+﻿@model DataRepository.Models.CrewMemberViewModel 
+        
+<div class="panel panel-primary">
+    <div class="panel-heading">
+
+    </div>
+    <div class="panel-title"></div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(m => m.SearchEntity.CrewName, "Crew")
+            @Html.TextBoxFor(m => m.SearchEntity.CrewName, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <div class="panel-footer">
+        <button id="btnSearch" class="btn btn-sm btn-primary" data-pdsa-action="search">
+            <i class="glyphicon glyphicon-search"></i>&nbsp;Search
+        </button>
+        <button id="btnReset" class="btn btn-sm btn-primary" data-pdsa-action="resetsearch">
+            <i class="glyphicon glyphicon-share-alt"></i>&nbsp; Reset
+        </button>
+        <button id="btnAdd" class="btn btn-sm btn-primary" data-pdsa-action="add">
+            <i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Add
+        </button>
+    </div>
+
+</div>
