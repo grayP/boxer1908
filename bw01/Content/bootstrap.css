@@ -2091,8 +2091,8 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #357ebd;
+  background-color: #030324;
+  border-color: #030324;
 }
 
 .btn-primary:hover,
@@ -5457,17 +5457,17 @@ a.list-group-item:focus {
 }
 
 .panel-primary {
-  border-color: #428bca;
+  border-color: #030324;
 }
 
 .panel-primary > .panel-heading {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #030324;
+  border-color: #030324;
 }
 
 .panel-primary > .panel-heading + .panel-collapse .panel-body {
-  border-top-color: #428bca;
+  border-top-color: #030324;
 }
 
 .panel-primary > .panel-footer + .panel-collapse .panel-body {
