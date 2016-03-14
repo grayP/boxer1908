@@ -1,0 +1,91 @@
+﻿@model DataRepository.Models.LocationViewModel
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<div>
+    <ul>
+        <li>
+            <div style="float:left; width:75px;">Latitide</div>
+            <input id="lat" type="text" readonly/>
+        </li>
+        <li>
+            <div style="float:left; width:75px;">Longitude</div>
+            <input id="long" type="text" readonly/>
+        </li>
+    </ul>
+</div>
+
+<row>
+    <div id="mapholder" style="width:500px;height:500px"></div>
+    <input id="lblCommentsNotification" type="text" readonly />
+</row>
+
+<script language="javascript" type="text/javascript">
+    var x = document.getElementById("demo");
+
+    $(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+
+     
+
+       
+
+
+
+        function showPosition(position) {
+            var latlon = position.coords.latitude + "," + position.coords.longitude;
+            var coordinates = position.coords;
+            
+            $("#lat").val(coordinates.latitude);
+            $("#long").val(coordinates.longitude);
+            var timestampDate = new Date(position.timestamp);
+            $.ajax({
+                url: '@Url.Action("Add")',
+                data: { 'lat': coordinates.latitude, 'long': coordinates.longitude, 'ReadingDateTime': timestampDate, 'Heading':coordinates.heading, 'Speed':coordinates.speed },
+                type: "POST",
+                cache: false,
+                success: function (response) {
+                    var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
+                     + latlon + "&zoom=14&size=400x300&sensor=false";
+                    document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'>";
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  
+                        alert(xhr.status);
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                   
+                    $('#lblCommentsNotification').text("Error encountered while saving the comments.");
+                }
+            });
+
+
+          
+        }
+
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+    });
+</script>
