@@ -25,4 +25,10 @@ namespace DataRepository
     public partial class CrewMember
     {
     }
+
+
+    public partial class Document
+    {
+        public bool nPublic { get; set; }
+    }
 }

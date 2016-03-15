@@ -83,7 +83,7 @@
           <EntitySet Name="RegattaCrews" EntityType="boxerdbModel.RegattaCrew" />
           <EntitySet Name="Images" EntityType="boxerdbModel.Image" />
           <EntitySet Name="Locations" EntityType="boxerdbModel.Location" />
-          <EntitySet Name="Document1" EntityType="boxerdbModel.Document1" />
+          <EntitySet Name="Document" EntityType="boxerdbModel.Document" />
         </EntityContainer>
         <EntityType Name="CrewMember">
           <Key>
@@ -133,7 +133,7 @@
           <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" />
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Document1">
+        <EntityType Name="Document">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -204,8 +204,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Document1">
-            <EntityTypeMapping TypeName="boxerdbModel.Document1">
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="boxerdbModel.Document">
               <MappingFragment StoreEntitySet="Document">
                 <ScalarProperty Name="Public" ColumnName="Public" />
                 <ScalarProperty Name="RegattaID" ColumnName="RegattaID" />

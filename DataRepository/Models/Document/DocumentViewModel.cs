@@ -18,7 +18,33 @@ namespace DataRepository.Models
         public List<Document> documents { get; set; }
         public Document SearchEntity { get; set; }
         public Document Entity { get; set; }
-    
+        public IList<RegattaSelectItem> RegattaList
+        {
+            get
+            {
+                using (boxerdb db = new boxerdb())
+                {
+                    var SelectList = (from item in
+                                      db.Regattas.OrderBy(x => x.StartDate)
+                                      select new RegattaSelectItem()
+                                      {
+                                          RegattaID = item.Id,
+                                          Regatta = item.RegattaName
+                                      }).ToList();
+
+                    return SelectList;
+                }
+
+            }
+
+
+            set { }
+        }
+
+
+
+
+
         //---------------------------------------------------------------
         protected override void Init()
         {

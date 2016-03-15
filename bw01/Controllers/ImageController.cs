@@ -13,10 +13,10 @@ namespace bw01.Controllers
 
         private ImageViewModel imv = new ImageViewModel();
         // GET: Image
-        public ActionResult Index(int RegattaID)
+        public ActionResult Index(int? RegattaID)
         {
 
-            imv.SearchEntity.RegattaID = RegattaID;
+            imv.searchRegattaID = RegattaID ?? 0;
             imv.HandleRequest();
             imv.imageToUpload.Status = false;
 

@@ -31,7 +31,7 @@ namespace DataRepository.Models
             {
                 ret = db.Images.OrderBy(x=>x.Id).ToList<Image>();
             }
-            if (Entity.RegattaID.HasValue)
+            if (Entity.RegattaID.HasValue  && Entity.RegattaID>0)
             {
                 ret = ret.FindAll(p => p.RegattaID.Equals(Entity.RegattaID));
 

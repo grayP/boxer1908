@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CmController.cs" />
     <Compile Include="Controllers\CrewController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -1001,6 +1002,8 @@
     <Content Include="Views\Crew\partial\_CrewMenu.cshtml" />
     <Content Include="Views\Crew\partial\_CrewData.cshtml" />
     <Content Include="Views\Crew\partial\_CrewDataOpen.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\HTMLEditor.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />

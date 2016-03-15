@@ -126,7 +126,7 @@ namespace DataRepository.Models
             //Entity = new Image();
             //Entity.Caption = "";
             imageToUpload = new UploadedImage();
-            imageToUpload.RegattaID = 0;
+            imageToUpload.RegattaID = Convert.ToInt32(EventArgument ?? "0");
             base.Add();
         }
 

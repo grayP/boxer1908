@@ -12,7 +12,7 @@
 
             <div class="alert alert-warning">
                 @Model.Message
-            <button id="btnAdd" class="btn btn-sm btn-primary" data-pdsa-action="add">
+            <button id="btnAdd" class="btn btn-sm btn-primary" data-pdsa-action="add" data-pdsa-val="@Model.searchRegattaID">
                 <i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Add photo to gallery
             </button>
         </div>
@@ -99,10 +99,8 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.imageToUpload.RegattaID, "Regatta")
-                        <div class="dropdown">
-                       
-                        @Html.DropDownListFor(m => m.imageToUpload.RegattaID, new SelectList(Model.RegattaList, "RegattaID", "Regatta", Model.RegattaList.First().RegattaID), new { @class = "menu" })
-                    </div>
+                    @Html.DropDownListFor(m => m.imageToUpload.RegattaID, new SelectList(Model.RegattaList, "RegattaID", "Regatta", Convert.ToInt32(Model.EventArgument)), new { @class = "form-control" })
+                  
                 </div>
 
 
