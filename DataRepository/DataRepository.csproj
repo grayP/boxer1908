@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Document1.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -79,6 +82,8 @@
     </Compile>
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Document\DocumentManager.cs" />
+    <Compile Include="Models\Document\CrewMemberViewModel.cs" />
     <Compile Include="Models\Image\ImageManager.cs" />
     <Compile Include="Models\Image\ImageViewModel.cs" />
     <Compile Include="Models\Location\LocationManager.cs" />

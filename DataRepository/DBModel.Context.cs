@@ -30,5 +30,6 @@ namespace DataRepository
         public virtual DbSet<RegattaCrew> RegattaCrews { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Document> Document { get; set; }
     }
 }

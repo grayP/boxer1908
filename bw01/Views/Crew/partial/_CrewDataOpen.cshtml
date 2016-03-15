@@ -1,0 +1,21 @@
+﻿@model DataRepository.Models.CrewMemberViewModel 
+        
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CrewMembers)
+            {
+                <tr>
+                     <td>@item.CrewName</td>
+               </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
