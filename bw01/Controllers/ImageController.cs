@@ -11,12 +11,12 @@ namespace bw01.Controllers
 
         private readonly IImageService _imageService = new ImageService();
 
-
+        private ImageViewModel imv = new ImageViewModel();
         // GET: Image
-        public ActionResult Index()
+        public ActionResult Index(int RegattaID)
         {
 
-            ImageViewModel imv = new ImageViewModel();
+            imv.SearchEntity.RegattaID = RegattaID;
             imv.HandleRequest();
             imv.imageToUpload.Status = false;
 
@@ -25,31 +25,31 @@ namespace bw01.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(FormCollection formCollection, ImageViewModel ivm)
+        public ActionResult Index(FormCollection formCollection, ImageViewModel iVm)
         {
 
-            ivm.IsValid = ModelState.IsValid;
+            iVm.IsValid = ModelState.IsValid;
             if (Request != null)
             {
-                ivm.file = Request.Files["file"];
+                iVm.file = Request.Files["file"];
             }
 
-            ivm.HandleRequest();
+            iVm.HandleRequest();
 
-            if (ivm.IsValid)
+            if (iVm.IsValid)
             {
                 ModelState.Clear();
             }
             else
             {
-                foreach (KeyValuePair<string, string> item in ivm.ValidationErrors)
+                foreach (KeyValuePair<string, string> item in iVm.ValidationErrors)
                 {
                     ModelState.AddModelError(item.Key, item.Value);
                 }
 
             }
 
-            return View(ivm);
+            return View(iVm);
 
 
         }

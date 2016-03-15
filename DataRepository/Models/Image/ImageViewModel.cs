@@ -28,9 +28,7 @@ namespace DataRepository.Models
 
         public string CommandString { get; set; }
         public string Message { get; set; }
-
-        public CrewMemberSelect MyProperty { get; set; }
-
+        public int? searchRegattaID { get; set; }
         public IList<RegattaSelectItem> RegattaList
         {
             get
@@ -63,6 +61,8 @@ namespace DataRepository.Models
             Images = new List<Image>();
             SearchEntity = new Image();
             Entity = new Image();
+
+            
             imageToUpload = new UploadedImage();
             imageToUpload.RegattaID = 0;
 

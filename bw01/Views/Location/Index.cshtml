@@ -1,0 +1,102 @@
+﻿@model DataRepository.Models.LocationViewModel
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<div>
+    
+    <div style="float:left; width:75px;">
+        Lat Long
+        <input id="lat" type="text" readonly class="form-control labels" style="width:150px;" />
+
+
+        <input id="long" type="text" readonly class="form-control labels" style="width:150px;" />
+    </div>
+</div>
+
+<row>
+    <div id="mapholder" style="height:90%;"></div>
+    <input id="lblCommentsNotification" class="labels" type="text" readonly />
+</row>
+
+<script language="javascript" type="text/javascript">
+
+    function DECtoDMS(dd) {
+        var vars = dd.split('.');
+        var deg = vars[0];
+        var tempma = "0." + vars[1];
+        tempma = tempma * 3600;
+        var min = Math.floor(tempma / 60);
+        var sec = tempma - (min * 60);
+    
+        return deg + '° ' + min + " " + sec.toFixed(2);
+    }
+    var x = document.getElementById("mapholder");
+
+
+
+
+    $(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+
+        function showPosition(position) {
+            var latlon = position.coords.latitude + "," + position.coords.longitude;
+            var coordinates = position.coords;
+            var Latitude = coordinates.latitude + '';
+            var Longitude = coordinates.longitude + '';
+            $("#lat").val(DECtoDMS(Latitude));
+            $("#long").val(DECtoDMS(Longitude));
+            var timestampDate = new Date(position.timestamp);
+            $.ajax({
+                url: '@Url.Action("Add")',
+                data: { 'lat': coordinates.latitude, 'long': coordinates.longitude, 'ReadingDateTime': timestampDate},
+                type: "POST",
+               cache: false,
+               success: function (response) {
+                    var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
+                     + latlon + "&zoom=14&size=600x600&sensor=false";
+                    document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'  style='height:90%;'>";
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  
+                        alert(xhr.status);
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                   
+                  
+                }
+            });
+
+
+          
+        }
+
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+
+
+       
+     
+    });
+</script>

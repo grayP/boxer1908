@@ -11,7 +11,7 @@ namespace DataRepository.Models
 
         public LocationViewModel(): base()
         {
-            
+          
         }
         
         //Properties--------------
