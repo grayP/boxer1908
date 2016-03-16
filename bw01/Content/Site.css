@@ -20,10 +20,73 @@ body {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    background-color: transparent; 
+   background-color: transparent; 
    padding-left: 30px;
-    padding-right: 30px;
+   padding-right: 30px;
 }
+
+
+.fill-screen{
+   background-size: cover;
+   background-position:center;
+}
+.content-filler{
+
+}
+
+.fixed-attachment{
+        background-attachment:fixed;
+
+}
+
+/* Navbar */
+.navbar {
+     padding: 5px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+
+}
+
+
+
+
+.navbar-brand
+{
+     padding:1px 1px 1px 1px;
+    
+}
+
+
+.navbar-header img
+{
+    width:100px;
+    padding-bottom:2px;
+    padding-top:2px;
+    padding-right:1px;
+   
+}
+
+.cbp-af-header-shrink
+{
+    padding:2px;
+    opacity:.9;
+}
+
+/* left column on layout page */
+.leftaside      {}
+
+
+/* right column on front page*/
+.rightaside a {
+    padding: 50px;
+           color:white;
+
+}
+.rightaside .glyphicon {
+    font-size:50px;
+
+}
+
 
 
 .quotation_div {

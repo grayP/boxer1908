@@ -49,33 +49,24 @@
      <!-- Start List Area  -->
     if (Model.IsListAreaVisible)
     {
-        <div class="table-responsive">
-            <table class="table table-condensed table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="pdsa-action-button-column">Edit</th>
-                        <th>Text</th>
-                        <th>Type</th>
-                        <th>Regatta</th>
-                        <th class="pdsa-action-button-column">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
+       
                     @foreach (var item in Model.documents)
                     {
-                        <tr>
-                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td>
-                                @item.DocumentText
-                            </td>
-                            <td>@item.DocumentType</td>
-                            <td>@item.RegattaID</td>
-                            <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="delete" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a></td>
-                        </tr>
+                        <article>
+                            <div class="row">
+ 
+
+                                <div>
+                                    @item.DocumentText
+                                </div>
+                                <div class="pdsa-action">
+                                    <a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="#" data-pdsa-action="delete" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                                </div>
+                            </div>
+                        </article>
                     }
-                </tbody>
-            </table>
-        </div>
+
     }
     <!-- End List Area-->
     <!--Detail Area-->
@@ -127,8 +118,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.Entity.RegattaID, "Regatta")
-                  
-                      @Html.DropDownListFor(m => m.Entity.RegattaID, new SelectList(Model.RegattaList, "RegattaID", "Regatta",Model.Entity.RegattaID), new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.Entity.RegattaID, new SelectList(Model.RegattaList, "RegattaID", "Regatta",Model.Entity.RegattaID), new { @class = "form-control" })
                
                 </div>
 
