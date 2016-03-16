@@ -55,6 +55,7 @@
                     <tr>
                         <th class="pdsa-action-button-column">Edit</th>
                         <th>Regatta</th>
+                        <th align="right">Action</th>
                         <th>Year</th>
                         <th>Date</th>
                         <th>Result</th>
@@ -67,9 +68,15 @@
                         <tr>
                             <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
                             <td>
-                                @Html.ActionLink(@item.RegattaName, "Index", "RegattaCrew", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
+                                @Html.ActionLink(@item.RegattaName, "Index", "Display", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
+                               </td>
+                            <td align="right">
+                                <a href="@Url.Action("Index", "RegattaCrew",new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)" class="btn btn-sm btn-default" alt="Crw List"><i class="glyphicon glyphicon-user"></i></a>
                                 <a href="@Url.Action("Index", "Image",new { RegattaID = item.Id })" class="btn btn-sm btn-default" alt="Photos of this regatta"><i class="glyphicon glyphicon-camera"></i></a>
-                                <a href="@Url.Action("Index", "Document",new { RegattaID = item.Id })" class="btn btn-sm btn-default" alt="Documents"><i class="glyphicon glyphicon-book"></i></a>
+                                <a href="@Url.Action("Index", "Document",new { RegattaID = item.Id, DocumentType="log" })" class="btn btn-sm btn-default" alt="Documents"><i class="glyphicon glyphicon-book"></i></a>
+                                <a href="@Url.Action("Index", "Document",new { RegattaID = item.Id, DocumentType="shop" })" class="btn btn-sm btn-default" alt="Documents"><i class="glyphicon glyphicon-glass"></i></a>
+                                <a href="@Url.Action("Index", "Document",new { RegattaID = item.Id, DocumentType="list" })" class="btn btn-sm btn-default" alt="Documents"><i class="glyphicon glyphicon-wrench"></i></a>
+
                             </td>
                             <td>@item.RegattaYear</td>
                             <td>@item.StartDate.Value.ToString("dd MMM yyyy")</td>

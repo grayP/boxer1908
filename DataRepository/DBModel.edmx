@@ -20,11 +20,12 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocumentDateTime" Type="datetime" />
+          <Property Name="Heading" Type="varchar" MaxLength="255" />
           <Property Name="DocumentText" Type="varchar(max)" />
           <Property Name="DocumentType" Type="varchar" MaxLength="25" />
           <Property Name="DocumentAuthor" Type="varchar" MaxLength="255" />
           <Property Name="RegattaID" Type="int" />
-          <Property Name="Public" Type="bit" />
+          <Property Name="Public" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -143,7 +144,8 @@
           <Property Name="DocumentType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="DocumentAuthor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="RegattaID" Type="Int32" />
-          <Property Name="Public" Type="Boolean" />
+          <Property Name="Public" Type="Boolean" Nullable="false" />
+          <Property Name="Heading" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -207,6 +209,7 @@
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="boxerdbModel.Document">
               <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
                 <ScalarProperty Name="Public" ColumnName="Public" />
                 <ScalarProperty Name="RegattaID" ColumnName="RegattaID" />
                 <ScalarProperty Name="DocumentAuthor" ColumnName="DocumentAuthor" />

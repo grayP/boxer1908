@@ -52,8 +52,7 @@ namespace DataRepository.Models
             {
                 ret = db.Document.Find(docID);
             }
-            ret.nPublic = ret.Public ?? false;
-            return ret;
+             return ret;
 
         }
 
@@ -79,7 +78,6 @@ namespace DataRepository.Models
             bool ret = false;
             if (Validate(entity))
             {
-                entity.Public = entity.nPublic;
                 try
                 {
                     using (boxerdb db = new boxerdb())
@@ -114,7 +112,6 @@ namespace DataRepository.Models
                 ret = Validate(entity);
                 if (ret)
                 {
-                    entity.Public = entity.nPublic;
                     using (boxerdb db = new boxerdb())
                     {
                         Document newDoc = new Document()

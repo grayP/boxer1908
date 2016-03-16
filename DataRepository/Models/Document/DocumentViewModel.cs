@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+
+
 
 namespace DataRepository.Models
 {
@@ -18,6 +19,11 @@ namespace DataRepository.Models
         public List<Document> documents { get; set; }
         public Document SearchEntity { get; set; }
         public Document Entity { get; set; }
+        public int RegattaID { get; set; }
+        public string DocumentType { get; set; }
+
+     
+        public string DocumentText { get; set; }
         public IList<RegattaSelectItem> RegattaList
         {
             get

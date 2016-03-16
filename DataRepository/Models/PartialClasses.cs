@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
+
 
 namespace DataRepository
 {
@@ -29,6 +31,7 @@ namespace DataRepository
 
     public partial class Document
     {
-        public bool nPublic { get; set; }
+        [AllowHtml]
+        public string DocText { get; set; }
     }
 }

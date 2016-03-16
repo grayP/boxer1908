@@ -20,6 +20,7 @@ namespace DataRepository
         public string DocumentType { get; set; }
         public string DocumentAuthor { get; set; }
         public Nullable<int> RegattaID { get; set; }
-        public Nullable<bool> Public { get; set; }
+        public bool Public { get; set; }
+        public string Heading { get; set; }
     }
 }

@@ -10,10 +10,14 @@ namespace bw01.Controllers
     public class DocumentController : Controller
     {
         // GET: Regatta
-        public ActionResult Index()
+        public ActionResult Index(int? RegattaID, string DocumentType)
         {
-            DocumentViewModel dvm = new DocumentViewModel();
-            
+
+            DocumentViewModel dvm = new DocumentViewModel()
+            {
+                RegattaID = (RegattaID.HasValue) ? 0 : Convert.ToInt32(RegattaID),
+                DocumentType = (DocumentType == null) ? DocumentType : "log"
+            };
             dvm.HandleRequest();
 
             return View(dvm);
@@ -23,6 +27,7 @@ namespace bw01.Controllers
         public ActionResult Index(DocumentViewModel dvm)
         {
             dvm.IsValid = ModelState.IsValid;
+            dvm.Entity.DocumentText = dvm.DocumentText;
             dvm.HandleRequest();
 
             if (dvm.IsValid)
