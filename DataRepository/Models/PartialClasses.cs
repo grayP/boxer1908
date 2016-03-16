@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+
+
 
 
 namespace DataRepository
@@ -24,14 +25,11 @@ namespace DataRepository
 
 
     [MetadataType(typeof(CrewMemberMetaData))]
+
     public partial class CrewMember
     {
     }
 
 
-    public partial class Document
-    {
-        [AllowHtml]
-        public string DocText { get; set; }
-    }
+   
 }

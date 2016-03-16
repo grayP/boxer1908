@@ -54,11 +54,15 @@
         {
             <article>
                 <div class="panel panel-primary">
-                  <div class="panel-title">
-                        @item.Heading
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>@item.Heading</h4>
+                        </div>
+                       
                     </div>
                     <div class="panel-body">
-                        @item.DocumentText
+                        @Html.Raw(item.DocumentText)
+
                     </div>
                     <div class="pdsa-action panel-footer">
                         <a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a>
@@ -103,9 +107,9 @@
                 <div class="form-group">
                     @Html.HiddenFor(m => m.Entity.Id)
                     @Html.HiddenFor(m => m.Entity.DocumentType)
-                  
-                
-                   
+
+
+
                     @Html.LabelFor(m => m.Entity.Heading, "Heading")
                     @Html.TextBoxFor(m => m.Entity.Heading, new { @class = "form-control" })
                 </div>

@@ -15,8 +15,8 @@ namespace bw01.Controllers
 
             DocumentViewModel dvm = new DocumentViewModel()
             {
-                RegattaID = (RegattaID.HasValue) ? 0 : Convert.ToInt32(RegattaID),
-                DocumentType = (DocumentType == null) ? DocumentType : "log"
+                RegattaID = (RegattaID.HasValue) ?  Convert.ToInt32(RegattaID):0,
+                DocumentType = (DocumentType == null) ?  "all": DocumentType
             };
             dvm.HandleRequest();
 
@@ -28,6 +28,12 @@ namespace bw01.Controllers
         {
             dvm.IsValid = ModelState.IsValid;
             dvm.Entity.DocumentText = dvm.DocumentText;
+            dvm.Entity.DocumentType = dvm.DocumentType;
+            dvm.Entity.DocumentAuthor = User.Identity.Name ?? "Guest";
+            dvm.Entity.DocumentDateTime = DateTime.Now;
+
+            dvm.SearchEntity.DocumentType = dvm.DocumentType;
+
             dvm.HandleRequest();
 
             if (dvm.IsValid)

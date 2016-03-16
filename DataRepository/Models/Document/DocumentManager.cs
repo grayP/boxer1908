@@ -30,15 +30,18 @@ namespace DataRepository.Models
                 ret = db.Document.OrderBy(x=>x.Id).ToList<Document>();
             }
 
-            if(Entity.RegattaID.HasValue)
+            if(Entity.RegattaID.HasValue  && Entity.RegattaID>0)
             {
                 ret = ret.FindAll(p => p.RegattaID.Equals(Entity.RegattaID));
             }
-
-
-            if (!string.IsNullOrEmpty(Entity.DocumentAuthor))
+            if (!string.IsNullOrEmpty(Entity.DocumentType)  && (Entity.DocumentType.ToLower() !="all"))
             {
-                ret = ret.FindAll(p => p.DocumentAuthor.ToLower().StartsWith(Entity.DocumentAuthor));
+                ret = ret.FindAll(p => p.DocumentType.Equals(Entity.DocumentType));
+            }
+
+            if (!string.IsNullOrEmpty(Entity.Heading))
+            {
+                ret = ret.FindAll(p => p.DocumentAuthor.ToLower().Contains(Entity.Heading));
             }
 
             
@@ -86,6 +89,7 @@ namespace DataRepository.Models
                         var modifiedDocument = db.Entry(entity);
                         modifiedDocument.Property(e => e.DocumentType).IsModified = true;
                         modifiedDocument.Property(e => e.DocumentText).IsModified = true;
+                        modifiedDocument.Property(e => e.Heading).IsModified = true;
                         modifiedDocument.Property(e => e.Public).IsModified = true;
                         modifiedDocument.Property(e => e.RegattaID).IsModified = true;
                        // modifiedDocument.Property(e => e.DocumentDateTime).IsModified = true;
@@ -119,7 +123,8 @@ namespace DataRepository.Models
                             DocumentAuthor = entity.DocumentAuthor,
                             DocumentDateTime = entity.DocumentDateTime,
                             DocumentText = entity.DocumentText,
-                            DocumentType=entity.DocumentType,
+                            DocumentType = entity.DocumentType,
+                            Heading = entity.Heading,
                             Public=entity.Public ,
                             RegattaID=entity.RegattaID
                         };

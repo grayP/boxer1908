@@ -117,7 +117,7 @@ namespace BaseModel
 
         protected virtual void Get()
         {
-
+           
         }
         protected virtual void Edit()
         {

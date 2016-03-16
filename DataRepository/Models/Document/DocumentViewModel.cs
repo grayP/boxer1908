@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
-
+using System.Web.Mvc;
 
 namespace DataRepository.Models
 {
-    public class DocumentViewModel: BaseModel.ViewModelBase
+    public partial class DocumentViewModel: BaseModel.ViewModelBase
     {
 
         public DocumentViewModel(): base()
@@ -21,9 +19,9 @@ namespace DataRepository.Models
         public Document Entity { get; set; }
         public int RegattaID { get; set; }
         public string DocumentType { get; set; }
-
-     
+        [AllowHtml]
         public string DocumentText { get; set; }
+
         public IList<RegattaSelectItem> RegattaList
         {
             get
@@ -56,6 +54,7 @@ namespace DataRepository.Models
         {
           documents = new List<Document>();
           SearchEntity = new Document();
+         
           Entity = new Document();
           base.Init();
         }
@@ -72,6 +71,8 @@ namespace DataRepository.Models
 
         protected override void Get()
         {
+            SearchEntity.DocumentType = DocumentType;
+            SearchEntity.RegattaID = RegattaID;
             DocumentManager dm = new DocumentManager();
             documents = dm.Get(SearchEntity);
         }
