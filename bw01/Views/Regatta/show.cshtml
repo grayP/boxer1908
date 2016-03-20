@@ -1,0 +1,46 @@
+﻿@model DataRepository.Models.RegattaViewModel
+
+@{
+    ViewBag.Title = "Regattas";
+}
+
+
+      <!-- Start List Area  -->
+   @if (Model.IsListAreaVisible)
+    {
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Regatta</th>
+                        <th align="right">Action</th>
+                        <th>Year</th>
+                        <th>Date</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.regattas)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(@item.RegattaName, "Index", "Display", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
+                               </td>
+                            <td align="right">
+                                <a href="@Url.Action("show", "Image",new { RegattaID = item.Id })" class="btn btn-sm btn-default" alt="Photos of this regatta"><i class="glyphicon glyphicon-camera"></i></a>
+                                <a href="@Url.Action("show", "Document",new { RegattaID = item.Id, DocumentType="log" })" class="btn btn-sm btn-default" alt="Documents"><i class="glyphicon glyphicon-book"></i></a>
+                              
+                            </td>
+                            <td>@item.RegattaYear</td>
+                            <td>@item.StartDate.Value.ToString("dd MMM yyyy")</td>
+                            <td>@item.Result</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    <!-- End List Area-->
+
+   
+

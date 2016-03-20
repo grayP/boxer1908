@@ -41,7 +41,7 @@ namespace DataRepository.Models
 
             if (!string.IsNullOrEmpty(Entity.Heading))
             {
-                ret = ret.FindAll(p => p.DocumentAuthor.ToLower().Contains(Entity.Heading));
+                ret = ret.FindAll(p => p.DocumentAuthor.ToLower().Contains(Entity.Heading)||p.Heading.ToLower().Contains(Entity.Heading));
             }
 
             

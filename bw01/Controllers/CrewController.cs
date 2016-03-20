@@ -17,7 +17,7 @@ namespace bw01.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(CrewMemberViewModel cvm)
         {
             cvm.IsValid = ModelState.IsValid;

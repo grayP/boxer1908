@@ -611,6 +611,7 @@
     <Content Include="Content\kendo\images\kendoui.ttf" />
     <Content Include="Content\kendo\images\kendoui.woff" />
     <None Include="Properties\PublishProfiles\boxer1904.pubxml" />
+    <None Include="Properties\PublishProfiles\boxer1908.pubxml" />
     <None Include="Properties\PublishProfiles\rq1908 %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\rq1908 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\rq1908.pubxml" />
@@ -618,6 +619,7 @@
     <Content Include="Scripts\cbpAnimatedHeader.js" />
     <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\GoogleMapping.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1001,7 +1003,7 @@
     <Content Include="Views\RegattaCrew\Index.cshtml" />
     <Content Include="Views\RegattaCrew\EditorTemplates\CrewMemberSelect.cshtml" />
     <Content Include="Views\image\Index.cshtml" />
-    <Content Include="Views\image\Show.cshtml" />
+    <Content Include="Views\image\show.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Crew\partial\_CrewMenu.cshtml" />
     <Content Include="Views\Crew\partial\_CrewData.cshtml" />
@@ -1009,6 +1011,9 @@
     <Content Include="Views\Shared\EditorTemplates\HTMLEditor.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Shared\_NavIcons.cshtml" />
+    <Content Include="Views\Document\show.cshtml" />
+    <Content Include="Views\Regatta\show.cshtml" />
+    <Content Include="Views\Location\show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />

@@ -1,0 +1,31 @@
+﻿@model DataRepository.Models.DocumentViewModel
+
+@{
+    ViewBag.Title = "Stories";
+}
+
+
+
+
+<!-- Start List Area  -->
+@if (Model.IsListAreaVisible)
+
+{
+    foreach (var item in Model.documents)
+    {
+        <article>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>@item.Heading</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    @Html.Raw(item.DocumentText)
+                </div>
+            </div>
+        </article>
+    }
+}
+
+<!-- End List Area-->

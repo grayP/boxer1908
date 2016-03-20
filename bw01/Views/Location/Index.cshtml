@@ -4,22 +4,20 @@
     ViewBag.Title = "Location";
 }
 
-<div>
-    
-    <div style="float:left; width:75px;">
+<div class="row">
+
+    <div style="float:left; width:200px;">
         Lat Long
         <input id="lat" type="text" readonly class="form-control labels" style="width:150px;" />
-
-
         <input id="long" type="text" readonly class="form-control labels" style="width:150px;" />
     </div>
+
+
+   
+        <div id="mapholder" style="height:90%;"></div>
+        
+    
 </div>
-
-<row>
-    <div id="mapholder" style="height:90%;"></div>
-    <input id="lblCommentsNotification" class="labels" type="text" readonly />
-</row>
-
 <script language="javascript" type="text/javascript">
 
     function DECtoDMS(dd) {

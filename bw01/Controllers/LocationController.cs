@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using DataRepository;
 using DataRepository.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace bw01.Controllers
 {
@@ -11,6 +12,7 @@ namespace bw01.Controllers
 
         private LocationViewModel lcm=new LocationViewModel(); 
         // GET: Location
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             lcm.Mode="List";
@@ -19,8 +21,18 @@ namespace bw01.Controllers
             return View(lcm);
         }
 
+
+        public ActionResult show()
+        {
+            lcm.Mode = "List";
+            lcm.HandleRequest();
+
+            return View(lcm);
+        }
+
         [HttpPost]
-         public void Add(Decimal Lat, Decimal Long, DateTime? ReadingDateTime)
+        [Authorize(Roles = "Admin")]
+        public void Add(Decimal Lat, Decimal Long, DateTime? ReadingDateTime)
         {
            try
             {
@@ -43,5 +55,52 @@ namespace bw01.Controllers
               //  return View();
             }
         }
+
+
+        public ActionResult GetMarkers()
+        {
+           // MarkerList markers = GetMarkersObjects();
+            lcm.Mode = "List";
+            lcm.HandleRequest();
+
+            return Json(lcm.locations, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Gets the markers. This data could be filled with whatever you 
+        /// set from your DB.
+        /// </summary>
+        /// <returns></returns>
+        public static MarkerList GetMarkersObjects()
+        {
+            Marker marker = new Marker
+            {
+                html = "Some stuff to display in the<br>First Info Window",
+                lat = "51.4109278",
+                lng = "-0.2091921",
+                label = "Marker One"
+            };
+
+            Marker marker2 = new Marker
+            {
+                html = "Some stuff to display in the<br>Second Info Window",
+                lat = "55.084",
+                lng = "-1.82",
+                label = "Marker Two"
+            };
+
+            Marker marker3 = new Marker
+            {
+                html = "Some stuff to display in the<br>Third Info Window",
+                lat = "53.08",
+                lng = "-1.35",
+                label = "Marker Three"
+            };
+
+
+            return new MarkerList { markers = new List<Marker> { marker, marker2, marker3 } };
+        }
+
+
     }
 }

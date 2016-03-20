@@ -92,6 +92,8 @@
     <Compile Include="Models\Image\ImageViewModel.cs" />
     <Compile Include="Models\Location\LocationManager.cs" />
     <Compile Include="Models\Location\LocationViewModel.cs" />
+    <Compile Include="Models\Location\MapsHelper.cs" />
+    <Compile Include="Models\Location\marker.cs" />
     <Compile Include="Models\RegattaCrew\CrewMemberSelect.cs" />
     <Compile Include="Models\Crew\CrewManager.cs" />
     <Compile Include="Models\Crew\CrewMemberViewModel.cs" />

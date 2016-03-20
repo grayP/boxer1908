@@ -10,11 +10,20 @@ namespace bw01.Controllers
     public class RegattaController : Controller
     {
         // GET: Regatta
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             RegattaViewModel rvm = new RegattaViewModel();
              rvm.HandleRequest();
             
+            return View(rvm);
+        }
+
+        public ActionResult show()
+        {
+            RegattaViewModel rvm = new RegattaViewModel();
+            rvm.HandleRequest();
+
             return View(rvm);
         }
 

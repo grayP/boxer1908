@@ -10,6 +10,7 @@ namespace bw01.Controllers
     public class DocumentController : Controller
     {
         // GET: Regatta
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(int? RegattaID, string DocumentType)
         {
 
@@ -22,6 +23,20 @@ namespace bw01.Controllers
 
             return View(dvm);
         }
+
+        public ActionResult show(int? RegattaID, string DocumentType)
+        {
+
+            DocumentViewModel dvm = new DocumentViewModel()
+            {
+                RegattaID = (RegattaID.HasValue) ? Convert.ToInt32(RegattaID) : 0,
+                DocumentType = "log"
+            };
+            dvm.HandleRequest();
+
+            return View(dvm);
+        }
+
 
         [HttpPost]
         public ActionResult Index(DocumentViewModel dvm)

@@ -10,10 +10,21 @@ namespace bw01.Controllers
     {
 
         private readonly IImageService _imageService = new ImageService();
-
         private ImageViewModel imv = new ImageViewModel();
         // GET: Image
+
+        [Authorize(Roles ="Admin")]
         public ActionResult Index(int? RegattaID)
+        {
+
+            imv.searchRegattaID = RegattaID ?? 0;
+            imv.HandleRequest();
+            imv.imageToUpload.Status = false;
+
+            return View(imv);
+        }
+
+        public ActionResult show(int? RegattaID)
         {
 
             imv.searchRegattaID = RegattaID ?? 0;
