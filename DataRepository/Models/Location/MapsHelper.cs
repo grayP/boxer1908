@@ -19,7 +19,7 @@ namespace DataRepository
             StringBuilder mapHtml = new StringBuilder();
 
             // Google Maps API Link
-            mapHtml.Append("<script src=\"http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=");
+            mapHtml.Append("<script src=\"https://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=");
             mapHtml.Append(key);
             mapHtml.Append("\" type=\"text/javascript\"></script>");
 
@@ -36,7 +36,7 @@ namespace DataRepository
             mapHtml.Append("px\"></div>");
 
             // Maps javascript file
-            mapHtml.Append("<script type=\"text/javascript\" src=\"/Content/GoogleMapping.js\"></script>");
+            mapHtml.Append("<script type=\"text/javascript\" src=\"/Scripts/GoogleMapping.js\"></script>");
 
             return mapHtml.ToString();
         }

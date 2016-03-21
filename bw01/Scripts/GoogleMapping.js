@@ -34,6 +34,8 @@
         var jsonData = eval('(' + doc + ')');
 
         // Plot the markers
+  
+
         for (var i = 0; i < jsonData.markers.length; i++) {
             var point = new GLatLng(jsonData.markers[i].Latitude, jsonData.markers[i].Longitude);
             var marker = createMarker(point, jsonData.markers[i].ID, jsonData.markers[i].Phone);

@@ -61,46 +61,25 @@ namespace bw01.Controllers
         {
            // MarkerList markers = GetMarkersObjects();
             lcm.Mode = "List";
+            lcm.SearchEntity.Phone = "gray";
             lcm.HandleRequest();
 
-            return Json(lcm.locations, JsonRequestBehavior.AllowGet);
+            foreach (var location in lcm.locations)
+            {
+                lcm.markers.Add(new Marker()
+                {
+                   latitude=location.Latitude,
+                   longitude=location.Longitude,
+                   phone=location.Phone,
+                   ID=location.Id
+                });
+            }
+
+
+            return Json(lcm.markers, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Gets the markers. This data could be filled with whatever you 
-        /// set from your DB.
-        /// </summary>
-        /// <returns></returns>
-        public static MarkerList GetMarkersObjects()
-        {
-            Marker marker = new Marker
-            {
-                html = "Some stuff to display in the<br>First Info Window",
-                lat = "51.4109278",
-                lng = "-0.2091921",
-                label = "Marker One"
-            };
-
-            Marker marker2 = new Marker
-            {
-                html = "Some stuff to display in the<br>Second Info Window",
-                lat = "55.084",
-                lng = "-1.82",
-                label = "Marker Two"
-            };
-
-            Marker marker3 = new Marker
-            {
-                html = "Some stuff to display in the<br>Third Info Window",
-                lat = "53.08",
-                lng = "-1.35",
-                label = "Marker Three"
-            };
-
-
-            return new MarkerList { markers = new List<Marker> { marker, marker2, marker3 } };
-        }
-
+     
 
     }
 }

@@ -13,9 +13,9 @@ namespace DataRepository
 
     public class Marker
     {
-        public string lat { get; set; }
-        public string lng { get; set; }
-        public string html { get; set; }
-        public string label { get; set; }
+        public int ID { get; set; }
+        public decimal? latitude { get; set; }
+        public decimal? longitude { get; set; }
+        public string phone { get; set; }
     }
 }
