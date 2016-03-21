@@ -2,7 +2,7 @@
     
     // Build up the map 
     var map = new GMap(document.getElementById("map"));
-    map.setCenter(new google.maps.LatLng(51.44, -0.18), 5);
+    map.setCenter(new google.maps.LatLng(-27.5, 153.1), 11);
     map.addControl(new GLargeMapControl());
     map.addControl(new GMapTypeControl());
 
@@ -35,8 +35,8 @@
 
         // Plot the markers
         for (var i = 0; i < jsonData.markers.length; i++) {
-            var point = new GLatLng(jsonData.markers[i].Latitude, jsonData.markers[i].Longitude);
-            var marker = createMarker(point, jsonData.markers[i].ID, jsonData.markers[i].Phone);
+            var point = new GLatLng(jsonData.markers[i].lat, jsonData.markers[i].lng);
+            var marker = createMarker(point, jsonData.markers[i].label, jsonData.markers[i].html);
             map.addOverlay(marker);
         }
     }

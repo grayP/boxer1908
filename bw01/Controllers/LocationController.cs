@@ -59,11 +59,10 @@ namespace bw01.Controllers
 
         public ActionResult GetMarkers()
         {
-           // MarkerList markers = GetMarkersObjects();
-            lcm.Mode = "List";
-            lcm.HandleRequest();
+            MarkerList markers = GetMarkersObjects();
+           
 
-            return Json(lcm.locations, JsonRequestBehavior.AllowGet);
+            return Json(markers, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -73,32 +72,54 @@ namespace bw01.Controllers
         /// <returns></returns>
         public static MarkerList GetMarkersObjects()
         {
-            Marker marker = new Marker
+                LocationViewModel lv = new LocationViewModel();
+                lv.Mode = "List";
+                lv.HandleRequest();
+
+            List<Marker> _markers = new List<Marker>();
+
+
+            foreach (Location item in lv.locations)
             {
-                html = "Some stuff to display in the<br>First Info Window",
-                lat = "51.4109278",
-                lng = "-0.2091921",
-                label = "Marker One"
-            };
+                _markers.Add(new Marker()
+                {
+                    lat = item.Latitude.ToString(),
+                    lng = item.Latitude.ToString(),
+                    html = item.Phone.ToString(),
+                    label = item.Id.ToString()
+                });
 
-            Marker marker2 = new Marker
-            {
-                html = "Some stuff to display in the<br>Second Info Window",
-                lat = "55.084",
-                lng = "-1.82",
-                label = "Marker Two"
-            };
-
-            Marker marker3 = new Marker
-            {
-                html = "Some stuff to display in the<br>Third Info Window",
-                lat = "53.08",
-                lng = "-1.35",
-                label = "Marker Three"
-            };
+            }
 
 
-            return new MarkerList { markers = new List<Marker> { marker, marker2, marker3 } };
+
+            //Marker marker = new Marker
+            //{
+            //    html = "Some stuff to display in the<br>First Info Window",
+            //    lat = "51.4109278",
+            //    lng = "-0.2091921",
+            //    label = "Marker One"
+            //};
+
+            //Marker marker2 = new Marker
+            //{
+            //    html = "Some stuff to display in the<br>Second Info Window",
+            //    lat = "55.084",
+            //    lng = "-1.82",
+            //    label = "Marker Two"
+            //};
+
+            //Marker marker3 = new Marker
+            //{
+            //    html = "Some stuff to display in the<br>Third Info Window",
+            //    lat = "53.08",
+            //    lng = "-1.35",
+            //    label = "Marker Three"
+            //};
+
+
+            //return new MarkerList { markers = new List<Marker> { marker, marker2, marker3 } };
+            return new MarkerList { markers=_markers};
         }
 
 
