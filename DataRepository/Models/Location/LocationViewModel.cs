@@ -13,9 +13,10 @@ namespace DataRepository.Models
         {
           
         }
-        
+
         //Properties--------------
         public List<Location> locations { get; set; }
+        public List<Marker> markers { get; set; }
         public Location SearchEntity { get; set; }
         public Location Entity { get; set; }
     
@@ -23,6 +24,7 @@ namespace DataRepository.Models
         protected override void Init()
         {
           locations = new List<Location>();
+            markers = new List<Marker>();
           SearchEntity = new Location();
           Entity = new Location();
           base.Init();

@@ -56,7 +56,8 @@
                         <li>@Html.ActionLink("Home", "Index", "home")</li>
                         <li>@Html.ActionLink("Regattas", "show", "regatta")</li>
                         <li>@Html.ActionLink("Photos", "show", "image",new { RegattaID=0 },"")</li>
-                        <li>@Html.ActionLink("Stories", "show", "document", new { RegattaID = 0, DocumentType="Log" })</li>
+                        <li>@Html.ActionLink("Stories", "show", "Document", new { RegattaID = 0, DocumentType = "Log" }, "")</li>
+                        <li>@Html.ActionLink("Where is Boxer", "show", "location")</li>
 
                         }
 
