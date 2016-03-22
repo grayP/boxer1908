@@ -28,9 +28,11 @@ namespace DataRepository.Models
             List<Location> ret = new List<Location>();
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Locations.OrderByDescending(x=>x.ReadingDateTime).ToList<Location>();
+                ret = db.Locations.Take(Entity.Take).OrderByDescending(x=>x.ReadingDateTime).ToList<Location>();
                 
             }
+
+          
 
             if (!string.IsNullOrEmpty(Entity.Phone))
             {
@@ -47,6 +49,18 @@ namespace DataRepository.Models
             using (boxerdb db = new boxerdb())
             {
                 ret = db.Locations.Find(LocationID);
+            }
+            return ret;
+
+        }
+
+
+        public Location Latest()
+        {
+            Location ret = null;
+            using (boxerdb db = new boxerdb())
+            {
+                ret = db.Locations.OrderByDescending(x => x.ReadingDateTime).First();
             }
             return ret;
 

@@ -50,7 +50,7 @@
             var Longitude = coordinates.longitude + '';
             $("#lat").val(DECtoDMS(Latitude));
             $("#long").val(DECtoDMS(Longitude));
-            var timestampDate = new Date(position.timestamp);
+            var timestampDate = new Date().getTime();
             $.ajax({
                 url: '@Url.Action("Add")',
                 data: { 'lat': coordinates.latitude, 'long': coordinates.longitude, 'ReadingDateTime': timestampDate},

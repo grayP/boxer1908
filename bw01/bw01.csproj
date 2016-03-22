@@ -1014,6 +1014,7 @@
     <Content Include="Views\Document\show.cshtml" />
     <Content Include="Views\Regatta\show.cshtml" />
     <Content Include="Views\Location\show.cshtml" />
+    <Content Include="Views\Shared\_menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />

@@ -25,8 +25,10 @@ namespace DataRepository.Models
         {
           locations = new List<Location>();
             markers = new List<Marker>();
-          SearchEntity = new Location();
-          Entity = new Location();
+            SearchEntity = new Location();
+            SearchEntity.Take = 1000;
+            Entity = new Location();
+           
           base.Init();
         }
 

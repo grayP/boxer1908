@@ -9,8 +9,11 @@ using System.Linq;
 namespace DataRepository
 {
 
+     public partial class Location
+    {
+       public int Take { get; set; }
+    }
 
-    
     [MetadataType(typeof(RegattaMetaData))]
     public partial class Regatta
     {

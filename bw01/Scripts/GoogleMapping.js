@@ -1,10 +1,21 @@
 ﻿if (GBrowserIsCompatible()) {
-    
+    var startLat = $("#startLat").val();
+    var startLng = $("#startLng").val();
     // Build up the map 
     var map = new GMap(document.getElementById("map"));
-    map.setCenter(new google.maps.LatLng(-27.5, 153.1), 11);
+    map.setCenter(new google.maps.LatLng(startLat, startLng), 11);
     map.addControl(new GLargeMapControl());
     map.addControl(new GMapTypeControl());
+
+    //var map = new google.maps.Map(document.getElementById('map'), {
+    //    center: { lat: -27.5, lng: 153.1 },
+    //    scrollwheel: false,
+    //    zoom: 8
+    //});
+
+    
+
+
 
     var gmarkers = [];
     var htmls = [];
@@ -12,7 +23,14 @@
 
     // A function to create the marker and set up the event window
     function createMarker(point, name, html) {
-        var marker = new GMarker(point);
+      var marker = new GMarker(point);
+    ////    var marker = new google.maps.Marker({
+      //      map: map,
+     //       position: point,
+      //      title: html
+     //   });
+
+
         GEvent.addListener(marker, "click", function() {
             marker.openInfoWindowHtml(html);
         });
@@ -37,7 +55,8 @@
   
 
         for (var i = 0; i < jsonData.markers.length; i++) {
-            var point = new GLatLng(jsonData.markers[i].lat, jsonData.markers[i].lng);
+           var point = new GLatLng(jsonData.markers[i].lat, jsonData.markers[i].lng);
+           // var point = { lat: jsonData.markers[i].lat, lng: jsonData.markers[i].lng };
             var marker = createMarker(point, jsonData.markers[i].label, jsonData.markers[i].html);
             map.addOverlay(marker);
         }

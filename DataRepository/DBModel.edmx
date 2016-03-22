@@ -48,6 +48,14 @@
           <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
           <Property Name="Phone" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="MainHeading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Heading" Type="varchar(max)" />
+          <Property Name="Public" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Regatta">
           <Key>
             <PropertyRef Name="Id" />
@@ -71,6 +79,7 @@
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainHeading" EntityType="Self.MainHeading" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Regatta" EntityType="Self.Regatta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegattaCrew" EntityType="Self.RegattaCrew" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -85,6 +94,7 @@
           <EntitySet Name="Images" EntityType="boxerdbModel.Image" />
           <EntitySet Name="Locations" EntityType="boxerdbModel.Location" />
           <EntitySet Name="Document" EntityType="boxerdbModel.Document" />
+          <EntitySet Name="MainHeadings" EntityType="boxerdbModel.MainHeading" />
         </EntityContainer>
         <EntityType Name="CrewMember">
           <Key>
@@ -146,6 +156,14 @@
           <Property Name="RegattaID" Type="Int32" />
           <Property Name="Public" Type="Boolean" Nullable="false" />
           <Property Name="Heading" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MainHeading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Heading" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Public" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -216,6 +234,15 @@
                 <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
                 <ScalarProperty Name="DocumentText" ColumnName="DocumentText" />
                 <ScalarProperty Name="DocumentDateTime" ColumnName="DocumentDateTime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainHeadings">
+            <EntityTypeMapping TypeName="boxerdbModel.MainHeading">
+              <MappingFragment StoreEntitySet="MainHeading">
+                <ScalarProperty Name="Public" ColumnName="Public" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -31,5 +31,6 @@ namespace DataRepository
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Document> Document { get; set; }
+        public virtual DbSet<MainHeading> MainHeadings { get; set; }
     }
 }

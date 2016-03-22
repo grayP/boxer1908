@@ -84,10 +84,15 @@
     <Compile Include="Location.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MainHeading.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BW-Model.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Document\DocumentManager.cs" />
     <Compile Include="Models\Document\DocumentViewModel.cs" />
+    <Compile Include="Models\Heading\HeadingManager.cs" />
+    <Compile Include="Models\Heading\HeadingViewModel.cs" />
     <Compile Include="Models\Image\ImageManager.cs" />
     <Compile Include="Models\Image\ImageViewModel.cs" />
     <Compile Include="Models\Location\LocationManager.cs" />

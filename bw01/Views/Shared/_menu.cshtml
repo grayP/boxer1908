@@ -1,0 +1,18 @@
+﻿@if (User.IsInRole("Admin"))
+{
+                        <li>@Html.ActionLink("Home", "Index", "home")</li>
+                        <li>@Html.ActionLink("Regattas", "Index", "regatta")</li>
+                        <li>@Html.ActionLink("Crew", "Index", "crew")</li>
+                        <li>@Html.ActionLink("Photos", "Index", "image")</li>
+                        <li>@Html.ActionLink("Log", "Index", "Document", new { RegattaID = 0, DocumentType = "Log" }, "")</li>
+                        <li>@Html.ActionLink("Where is Boxer", "Index", "location")</li>
+}
+else
+{
+                        <li>@Html.ActionLink("Home", "Index", "home")</li>
+                        <li>@Html.ActionLink("Regattas", "show", "regatta")</li>
+                        <li>@Html.ActionLink("Photos", "show", "image", new { RegattaID = 0 }, "")</li>
+                        <li>@Html.ActionLink("Stories", "show", "Document", new { RegattaID = 0, DocumentType = "Log" }, "")</li>
+                        <li>@Html.ActionLink("Where is Boxer", "show", "location")</li>
+
+}
