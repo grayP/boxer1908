@@ -94,7 +94,7 @@
                     <div class="form-group">
                         @Html.HiddenFor(m => m.imageToUpload.Id)
                         @Html.LabelFor(m => m.imageToUpload.Caption, "Photo Caption")
-                        @Html.TextBoxFor(m => m.imageToUpload.Caption, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.imageToUpload.Caption, new { @class = "form-control" , style = "max-width:500px;" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.imageToUpload.RegattaID, "Regatta")

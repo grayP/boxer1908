@@ -204,6 +204,7 @@
     <Compile Include="Controllers\CmController.cs" />
     <Compile Include="Controllers\CrewController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\errorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -226,6 +227,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.aspx" />
+    <Content Include="404.html" />
+    <Content Include="500.aspx" />
+    <Content Include="500.html" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -831,6 +836,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\error\500.html" />
+    <Content Include="Views\error\500.aspx" />
+    <Content Include="Views\error\404.aspx" />
+    <Content Include="Views\error\404.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1015,6 +1024,7 @@
     <Content Include="Views\Regatta\show.cshtml" />
     <Content Include="Views\Location\show.cshtml" />
     <Content Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\error\error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />

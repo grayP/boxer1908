@@ -104,6 +104,8 @@ namespace DataRepository.Models
         protected override void Get()
         {
             ImageManager cmm = new ImageManager();
+            SearchEntity.RegattaID = SearchEntity.RegattaID ?? searchRegattaID;
+
             Images = cmm.Get(SearchEntity);
         }
 
