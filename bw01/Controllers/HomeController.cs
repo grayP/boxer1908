@@ -8,7 +8,6 @@ using DataRepository.Models;
     namespace bw01.Controllers
 {
 
-[InitializeSimpleMembership]
     public class HomeController : Controller
     {
         

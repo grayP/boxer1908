@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using bw01.Models;
 using System.Web.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace bw01.Controllers
 {
@@ -73,15 +74,44 @@ namespace bw01.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
-
+          
             SeedUsers();
 
 
             return View(model);
         }
 
+
+        bool AddUserAndRole(bw01.Models.ApplicationDbContext context)
+        {
+            IdentityResult ir;
+            var rm = new RoleManager<IdentityRole>
+                (new RoleStore<IdentityRole>(context));
+            ir = rm.Create(new IdentityRole("Admin"));
+            var um = new UserManager<ApplicationUser>(
+                new UserStore<ApplicationUser>(context));
+           
+
+            if (!Roles.IsUserInRole("gray.pritchett@optusnet.com.au", "Admin"))
+            {
+
+           
+                ir = um.AddToRole("gray.pritchett@optusnet.com.au", "canEdit");
+            return ir.Succeeded;
+            }else
+            {
+                return false;
+            }
+        }
+
+
         private void SeedUsers()
         {
+
+
+          
+
+
             string _role = "Admin";
             if (!Roles.RoleExists(_role))
                 Roles.CreateRole(_role);

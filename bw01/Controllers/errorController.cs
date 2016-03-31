@@ -2,7 +2,7 @@
 
 namespace bw01.Controllers
 {
-    public class errorController : Controller
+    public class ErrorController : Controller
     {
         public ViewResult Index()
         {
