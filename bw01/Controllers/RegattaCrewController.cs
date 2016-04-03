@@ -13,6 +13,7 @@ namespace bw01.Controllers
     public class RegattaCrewController : Controller
     {
         // GET: RegattaCrew
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(int RegattaID, string RegattaName)
         {
             RegattaCrewViewModel rcm = new RegattaCrewViewModel();
@@ -24,6 +25,7 @@ namespace bw01.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(RegattaCrewViewModel model)
         {
             RegattaCrewManager rcm = new RegattaCrewManager();

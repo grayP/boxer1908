@@ -10,7 +10,7 @@ namespace bw01.Controllers
     public class RegattaController : Controller
     {
         // GET: Regatta
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             RegattaViewModel rvm = new RegattaViewModel();
@@ -18,7 +18,7 @@ namespace bw01.Controllers
             
             return View(rvm);
         }
-
+        [AllowAnonymous]
         public ActionResult show()
         {
             RegattaViewModel rvm = new RegattaViewModel();
@@ -28,6 +28,7 @@ namespace bw01.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(RegattaViewModel rvm)
         {
             rvm.IsValid = ModelState.IsValid;

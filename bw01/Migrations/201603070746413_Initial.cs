@@ -7,21 +7,21 @@ namespace bw01.Migrations
     {
         public override void Up()
         {
-            DropForeignKey("dbo.ImagesTables", "ImageId", "dbo.ImageInSQLAzures");
-            DropIndex("dbo.ImagesTables", new[] { "ImageId" });
-            CreateTable(
-                "dbo.Contacts",
-                c => new
-                    {
-                        ContactId = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Address = c.String(),
-                        City = c.String(),
-                        State = c.String(),
-                        Zip = c.String(),
-                        Email = c.String(),
-                    })
-                .PrimaryKey(t => t.ContactId);
+          //  DropForeignKey("dbo.ImagesTables", "ImageId", "dbo.ImageInSQLAzures");
+          //  DropIndex("dbo.ImagesTables", new[] { "ImageId" });
+          //    CreateTable(
+                //"dbo.Contacts",
+                //c => new
+                //    {
+                //        ContactId = c.Int(nullable: false, identity: true),
+                //        Name = c.String(),
+                //        Address = c.String(),
+                //        City = c.String(),
+                //        State = c.String(),
+                //        Zip = c.String(),
+                //        Email = c.String(),
+                //    })
+                //.PrimaryKey(t => t.ContactId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -91,9 +91,9 @@ namespace bw01.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
-            DropTable("dbo.ImageInBlobs");
-            DropTable("dbo.ImageInSQLAzures");
-            DropTable("dbo.ImagesTables");
+            //DropTable("dbo.ImageInBlobs");
+            //DropTable("dbo.ImageInSQLAzures");
+            //DropTable("dbo.ImagesTables");
         }
         
         public override void Down()

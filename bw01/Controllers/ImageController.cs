@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace bw01.Controllers
 {
+
     public class ImageController : Controller
     {
 
@@ -13,7 +14,7 @@ namespace bw01.Controllers
         private ImageViewModel imv = new ImageViewModel();
         // GET: Image
 
-        [Authorize(Roles ="Admin")]
+        [AllowAnonymous]
         public ActionResult Index(int? RegattaID)
         {
 
@@ -23,7 +24,7 @@ namespace bw01.Controllers
 
             return View(imv);
         }
-
+        [AllowAnonymous]
         public ActionResult show(int? RegattaID)
         {
 
@@ -36,6 +37,7 @@ namespace bw01.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(FormCollection formCollection, ImageViewModel iVm)
         {
 

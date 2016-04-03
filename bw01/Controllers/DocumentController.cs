@@ -10,7 +10,7 @@ namespace bw01.Controllers
     public class DocumentController : Controller
     {
         // GET: Regatta
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public ActionResult Index(int? RegattaID, string DocumentType)
         {
 
@@ -23,7 +23,7 @@ namespace bw01.Controllers
 
             return View(dvm);
         }
-
+        [AllowAnonymous]
         public ActionResult show(int? RegattaID, string DocumentType)
         {
 
@@ -39,6 +39,7 @@ namespace bw01.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(DocumentViewModel dvm)
         {
             dvm.IsValid = ModelState.IsValid;

@@ -201,7 +201,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CmController.cs" />
     <Compile Include="Controllers\CrewController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -218,6 +217,10 @@
     <Compile Include="Migrations\201603070746413_Initial.Designer.cs">
       <DependentUpon>201603070746413_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603311103440_InitialCreate.cs" />
+    <Compile Include="Migrations\201603311103440_InitialCreate.Designer.cs">
+      <DependentUpon>201603311103440_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -227,10 +230,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="404.aspx" />
-    <Content Include="404.html" />
-    <Content Include="500.aspx" />
-    <Content Include="500.html" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -847,7 +846,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -1051,6 +1049,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603070746413_Initial.resx">
       <DependentUpon>201603070746413_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603311103440_InitialCreate.resx">
+      <DependentUpon>201603311103440_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

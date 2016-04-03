@@ -13,7 +13,7 @@ namespace bw01.Controllers
 
         private LocationViewModel lcm = new LocationViewModel();
         // GET: Location
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             lcm.Mode = "List";
