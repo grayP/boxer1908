@@ -4,14 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using DataRepository.Models;
-using bw01.Models;
-
-namespace bw01.Controllers
-{
-    public class CmController : Controller
+using System.Web;                               
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
