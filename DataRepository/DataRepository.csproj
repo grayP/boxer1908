@@ -106,6 +106,8 @@
     <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\RegattaCrew\RegattaCrewViewModel.cs" />
     <Compile Include="Models\RegattaCrew\RegattaCrewManager.cs" />
+    <Compile Include="Models\RegattaDisplay\RegattaDisplayManager.cs" />
+    <Compile Include="Models\RegattaDisplay\RegattaDisplayViewModel.cs" />
     <Compile Include="Models\Regatta\RegattaManager.cs" />
     <Compile Include="Models\Regatta\RegattaSelect.cs" />
     <Compile Include="Models\Regatta\RegattaViewModel.cs" />

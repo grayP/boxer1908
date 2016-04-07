@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using System;
 
 namespace ImageStorage
 {
@@ -23,10 +24,11 @@ namespace ImageStorage
         public byte[] Data { get; set; }
         public string Url { get; set; }
         public List<Thumbnail> Thumbnails { get; set; }
+        public DateTime DateTaken { get; set; }
 
         // 
 
-       
+
 
 
 

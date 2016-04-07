@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -17,6 +19,9 @@ namespace ImageStorage
         private readonly string _imageRootPath;
         private readonly string _containerName;
         private readonly string _blobStorageConnectionString;
+        private DateTime imageDate;
+        private static Regex r = new Regex(":");
+
 
         public ImageService()
         {
@@ -31,7 +36,7 @@ namespace ImageStorage
             _blobStorageConnectionString = ConfigurationManager.ConnectionStrings["BlobStorageConnectionString"].ConnectionString;
         }
 
-
+        
         public async Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file, UploadedImage oldImage)
         {
             if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
@@ -41,8 +46,27 @@ namespace ImageStorage
 
 
 
-                Image _image = Image.FromStream(file.InputStream);
+               Image _image = Image.FromStream(file.InputStream);
+
+               
+
+                try
+                {
+                    PropertyItem propItem = _image.GetPropertyItem(36867);
+                    string dateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
+                    imageDate = DateTime.Parse(dateTaken);
+                }
+                catch (Exception)
+                {
+                     imageDate = DateTime.Now;
+                  
+                }
+
+
                 CreateThumbnails(_image, oldImage);
+
+               
+               
                
 
                 return new UploadedImage
@@ -55,7 +79,8 @@ namespace ImageStorage
                     Name = file.FileName,
                     Url = String.Format("{0}/{1}",
                     _imageRootPath,
-                    file.FileName.ToString())
+                    file.FileName.ToString()),
+                    DateTaken=imageDate
                 };
             }
             return null;

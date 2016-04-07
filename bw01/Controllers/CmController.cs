@@ -4,7 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;                               
+using System.Web;
+namespace bw01.Controllers
+{
+    public class CrewController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
