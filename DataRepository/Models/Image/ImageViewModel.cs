@@ -61,11 +61,12 @@ namespace DataRepository.Models
             Images = new List<Image>();
             SearchEntity = new Image();
             Entity = new Image();
+            Entity.DateTaken = DateTime.Now;
 
             
             imageToUpload = new UploadedImage();
             imageToUpload.RegattaID = 0;
-
+           // imageToUpload.DateTaken = DateTime.Now;
             base.Init();
         }
 
@@ -118,6 +119,7 @@ namespace DataRepository.Models
             imageToUpload.RegattaID = Entity.RegattaID;
             imageToUpload.Id = Entity.Id;
             imageToUpload.Url = Entity.ImageURL;
+            imageToUpload.DateTaken = Entity.DateTaken ?? DateTime.Now;
 
             base.Edit();
         }

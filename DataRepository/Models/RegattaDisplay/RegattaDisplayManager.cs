@@ -34,7 +34,7 @@ namespace DataRepository.Models
             List<Document> storyList = new List<Document>();
             using (boxerdb db = new boxerdb())
             {
-                storyList = db.Document.Where(x => x.RegattaID == RegattaID).OrderBy(x=>x.DocumentDateTime).ToList();
+                storyList = db.Document.Where(x => x.RegattaID == RegattaID).Where(x=>x.DocumentType=="log").OrderBy(x=>x.DocumentDateTime).ToList();
             }
             return storyList;
         }

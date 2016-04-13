@@ -20,5 +20,6 @@ namespace DataRepository
         public string ImageURL { get; set; }
         public Nullable<int> RegattaID { get; set; }
         public string Caption { get; set; }
+        public Nullable<System.DateTime> DateTaken { get; set; }
     }
 }

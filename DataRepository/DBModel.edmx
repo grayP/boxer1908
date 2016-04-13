@@ -37,6 +37,7 @@
           <Property Name="ImageURL" Type="nvarchar" MaxLength="255" />
           <Property Name="RegattaID" Type="int" />
           <Property Name="Caption" Type="nvarchar(max)" />
+          <Property Name="DateTaken" Type="datetime" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -133,6 +134,7 @@
           <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="RegattaID" Type="Int32" />
           <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateTaken" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -204,6 +206,7 @@
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="boxerdbModel.Image">
               <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
                 <ScalarProperty Name="Caption" ColumnName="Caption" />
                 <ScalarProperty Name="RegattaID" ColumnName="RegattaID" />
                 <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />

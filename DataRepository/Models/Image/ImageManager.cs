@@ -29,7 +29,7 @@ namespace DataRepository.Models
             List<Image> ret = new List<Image>();
             using (boxerdb db = new boxerdb())
             {
-                ret = db.Images.OrderBy(x=>x.Id).ToList<Image>();
+                ret = db.Images.OrderBy(x=>x.DateTaken.Value).ToList<Image>();
             }
             if (Entity.RegattaID.HasValue  && Entity.RegattaID>0)
             {
@@ -101,6 +101,9 @@ namespace DataRepository.Models
                         Id=imageToUpDate.Id,
                         Caption = imageToUpDate.Caption,
                         RegattaID = imageToUpDate.RegattaID,
+                        DateTaken=  imageToUpDate.DateTaken
+                        
+
                     };
 
 
@@ -110,6 +113,7 @@ namespace DataRepository.Models
                         var modifiedImage = db.Entry(entity);
                         modifiedImage.Property(e => e.Caption).IsModified = true;
                         modifiedImage.Property(e => e.RegattaID).IsModified = true;
+                        modifiedImage.Property(e => e.DateTaken).IsModified = true;
                         //modifiedImage.Property(e => e.ImageURL).IsModified = true;
                        
                         db.SaveChanges();
@@ -138,7 +142,7 @@ namespace DataRepository.Models
                 entity.ImageURL = imageToUpload.Url;
                 entity.ThumbNailLarge = ImageService.ImageToByte(imageToUpload.Thumbnails[1].bitmap);
                 entity.ThumbNailSmall = ImageService.ImageToByte(imageToUpload.Thumbnails[0].bitmap);
-
+                entity.DateTaken = imageToUpload.DateTaken;
                 ret = Validate(entity);
                 if (ret)
                 {
