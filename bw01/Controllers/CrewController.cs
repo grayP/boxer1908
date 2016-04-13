@@ -8,11 +8,11 @@ namespace bw01.Controllers
     public class CrewController : Controller
     {
         // GET: Regatta
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             CrewMemberViewModel cvm = new CrewMemberViewModel();
             cvm.HandleRequest();
-
             return View(cvm);
         }
 
