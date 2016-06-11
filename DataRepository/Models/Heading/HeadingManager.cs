@@ -30,10 +30,6 @@ namespace DataRepository.Models
             {
                 ret = db.MainHeadings.OrderBy(x=>Guid.NewGuid()).Take(1).ToList<MainHeading>();
             }
-           
-
-
-
           
             return ret;
         }
