@@ -1,12 +1,9 @@
 namespace bw01.Migrations
 {
-    using Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using System;
-    using System.Data.Entity;
+    using Models;
     using System.Data.Entity.Migrations;
-    using System.Linq;
     using System.Web.Security;
 
     internal sealed class Configuration : DbMigrationsConfiguration<bw01.Models.ApplicationDbContext>
