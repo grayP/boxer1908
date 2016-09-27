@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="boxerdbModel.Regatta" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="boxerdbModel.RegattaCrew" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="boxerdbModel.Image" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="boxerdbModel.Location" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="boxerdbModel.Location" Width="1.5" PointX="5.375" PointY="3.75" IsExpanded="false" />
         <EntityTypeShape EntityType="boxerdbModel.Document" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="boxerdbModel.MainHeading" Width="1.5" PointX="3.375" PointY="6.75" />
       </Diagram>

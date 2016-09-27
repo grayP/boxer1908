@@ -18,20 +18,13 @@ namespace ImageStorage
         public int Id { get; set; }
         public bool Status { get; set; }
         public string Name { get; set; }
-        public int? RegattaID { get; set; }
         public string Caption { get; set; }
         public string ContentType { get; set; }
         public byte[] Data { get; set; }
         public string Url { get; set; }
         public List<Thumbnail> Thumbnails { get; set; }
         public DateTime DateTaken { get; set; }
-
-        // 
-
-
-
-
-
+        public int? RegattaID { get; set; }
 
     }
     public class Thumbnail

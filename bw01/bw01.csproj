@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -246,10 +247,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-bw01-20160217041151.mdf" />
-    <Content Include="App_Data\aspnet-bw01-20160217041151_log.ldf">
-      <DependentUpon>aspnet-bw01-20160217041151.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -638,9 +635,14 @@
     <None Include="Properties\PublishProfiles\1908 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\1908.pubxml" />
     <None Include="Properties\PublishProfiles\1908boxer - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\1908boxer.pubxml" />
+    <None Include="Properties\PublishProfiles\1908boxer.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\b1908.pubxml" />
     <None Include="Properties\PublishProfiles\boxer1904.pubxml" />
+    <None Include="Properties\PublishProfiles\boxer1908 %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\boxer1908.pubxml" />
+    <None Include="Properties\PublishProfiles\boxersecure.pubxml" />
     <None Include="Properties\PublishProfiles\rq1908 %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\rq1908 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\rq1908.pubxml" />
@@ -1045,6 +1047,7 @@
     <Content Include="Views\Shared\_menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Scripts\kendo\2015.3.1111\" />
     <Folder Include="Views\Error\" />
   </ItemGroup>
