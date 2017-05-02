@@ -60,10 +60,15 @@ namespace DataRepository.Models
                 }
                 else
                 {
-                    if (db.RegattaCrews.Any(x => x.CrewMemberId == crewMember.CrewMemberId && x.RegattaId==crewMember.RegattaId))
+                    var crewLine =
+                        db.RegattaCrews.FirstOrDefault(
+                            x => x.CrewMemberId == crewMember.CrewMemberId && x.RegattaId == crewMember.RegattaId);
+                    if (crewLine !=null)
+                   // if (db.RegattaCrews.Any(x => x.CrewMemberId == crewMember.CrewMemberId && x.RegattaId==crewMember.RegattaId))
                     {
-                        db.RegattaCrews.Attach(crewMember);
-                        db.RegattaCrews.Remove(crewMember);
+                        //crewMember.Id = crewLine.Id;
+                        db.RegattaCrews.Attach(crewLine);
+                        db.RegattaCrews.Remove(crewLine);
                         db.SaveChanges();
                     }
                 }
