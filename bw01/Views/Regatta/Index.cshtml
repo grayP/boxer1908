@@ -69,7 +69,7 @@
                         <tr>
                             <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="edit" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-edit"></i></a></td>
                             <td>
-                                @Html.ActionLink(@item.RegattaName, "Index", "Display", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
+                                @Html.ActionLink(@item.RegattaName, "show", "Regatta", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
                                </td>
                             <td align="right">
                                 <a href="@Url.Action("Index", "RegattaCrew",new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)" class="btn btn-sm btn-default" alt="Crw List"><i class="glyphicon glyphicon-user"></i></a>
@@ -79,8 +79,8 @@
                                 <a href="@Url.Action("Index", "Document",new { RegattaID = item.Id, DocumentType="list" })" class="btn btn-sm btn-default" alt="Documents"><i class="glyphicon glyphicon-wrench"></i></a>
 
                             </td>
-                            <td>@item.RegattaYear</td>
-                            <td>@item.StartDate.Value.ToString("dd MMM yyyy")</td>
+                            <td>@item.RegattaYear</td>  
+                            <td>@string.Format("{0:dd MMM yyyy}", item.StartDate)  </td>
                             <td>@item.Result</td>
                             <td class="pdsa-action-button-column"><a href="#" data-pdsa-action="delete" data-pdsa-val="@item.Id" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></a></td>
                         </tr>
@@ -131,8 +131,11 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Entity.StartDate, "Start Date")
-                    @Html.Kendo().DatePickerFor(m => m.Entity.StartDate).Format("d/MM/yyyy").HtmlAttributes(new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Entity.StartDate, "Start Date")         
+                    @Html.TextBoxFor(m => m.Entity.StartDate, "{0:dd MMM yyyy}", new { @class = "form-control datepicker", placeholder = "Enter start date here..." })
+
+
+                    @*@Html.Kendo().DatePickerFor(m => m.Entity.StartDate).Format("d/MM/yyyy").HtmlAttributes(new { @class = "form-control" })*@
                 </div>
 
                 <div class="form-group">
@@ -159,10 +162,17 @@
 
     <!-- End Detail Area-->
 
-}
 
-@section scripts
-{
-
-
+<script type="text/javascript">
+        $(function () { // will trigger when the document is ready
+            $(document).tooltip();
+            $('.datepicker').datepicker({
+                format: 'dd MM yyyy',
+                shortYearCutoff: 99,
+                orientation: "bottom"
+            }).on('changeDate', function (e) {
+                $(this).datepicker('hide');
+            });
+        });
+</script>
 }
