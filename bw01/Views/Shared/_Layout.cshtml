@@ -6,26 +6,12 @@
     <title>@ViewBag.Title </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-
-    <!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
     @Scripts.Render("~/bundles/jquery")
-    <link href="@Url.Content("~/Content/kendo/kendo.common-bootstrap.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/kendo/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/kendo/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/kendo/kendo.bootstrap.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/kendo/kendo.dataviz.bootstrap.min.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/kendo/jquery.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/kendo/jszip.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/kendo/kendo.all.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/kendo/kendo.aspnetmvc.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+
 
 </head>
 <body>
     <header>
-
-
         <div class="navbar navbar-inverse navbar-fixed-top cbp-af-header" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -43,7 +29,7 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                     @Html.Partial("_menu")
+                        @Html.Partial("_menu")
 
                     </ul>
                     @Html.Partial("_LoginPartial")
@@ -59,25 +45,18 @@
                     @RenderBody()
                 </div>
             </section>
-            
+
             @*<section >
-                <div class="fill-screen fixed-attachment" style="background-image:url('../../Content/images/BoxerWide.jpg');">
+                    <div class="fill-screen fixed-attachment" style="background-image:url('../../Content/images/BoxerWide.jpg');">
 
-                </div>
-            </section>*@
+                    </div>
+                </section>*@
         </div>
-  
-          
-    
-
     </div>
-        <footer id="footer">
-            <p>&copy; @DateTime.Now.Year - Boxer - grown men, doing stupid things, expensively!</p>
-        </footer>
-    
 
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

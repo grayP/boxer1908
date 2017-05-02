@@ -19,7 +19,7 @@ namespace bw01.Controllers
             return View(rvm);
         }
         [AllowAnonymous]
-        public ActionResult show()
+        public ActionResult Show()
         {
             RegattaViewModel rvm = new RegattaViewModel();
             rvm.HandleRequest();

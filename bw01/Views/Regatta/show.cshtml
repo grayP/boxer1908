@@ -24,7 +24,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.ActionLink(@item.RegattaName, "Index", "Display", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
+                                @Html.ActionLink(@item.RegattaName, "Index", "Regatta", new { RegattaID = item.Id, RegattaName = item.RegattaName }, null)
                                </td>
                             <td align="right">
                                 <a href="@Url.Action("show", "Image",new { RegattaID = item.Id })" class="btn btn-sm btn-default" alt="Photos of this regatta"><i class="glyphicon glyphicon-camera"></i></a>

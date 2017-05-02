@@ -103,10 +103,12 @@ namespace DataRepository.Models
             bool ret = false;
             try
             {
-                MainHeading entity = new MainHeading();
-                entity.Heading = headingtoUpload.Heading;
-                entity.Public = headingtoUpload.Public;
-         
+                MainHeading entity = new MainHeading
+                {
+                    Heading = headingtoUpload.Heading,
+                    Public = headingtoUpload.Public
+                };
+
                 ret = Validate(entity);
                 if (ret)
                 {

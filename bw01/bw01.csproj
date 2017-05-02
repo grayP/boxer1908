@@ -1047,6 +1047,8 @@
     <Content Include="Views\Shared\_menu.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\kendo\2015.3.1111\" />
