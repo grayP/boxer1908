@@ -248,10 +248,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-bw01-20160217041151.mdf" />
-    <Content Include="App_Data\aspnet-bw01-20160217041151_log.ldf">
-      <DependentUpon>aspnet-bw01-20160217041151.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -1051,6 +1047,7 @@
     <Content Include="Views\Home\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Scripts\kendo\2015.3.1111\" />
   </ItemGroup>
   <ItemGroup>
