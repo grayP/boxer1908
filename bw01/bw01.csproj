@@ -631,6 +631,7 @@
     <Content Include="Content\kendo\fonts\glyphs\KendoUIGlyphs.woff" />
     <Content Include="Content\kendo\images\kendoui.ttf" />
     <Content Include="Content\kendo\images\kendoui.woff" />
+    <Content Include="privatesettings.config" />
     <None Include="Properties\PublishProfiles\1908 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\b1908 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\boxer1908.pubxml" />
